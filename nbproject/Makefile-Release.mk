@@ -41,8 +41,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Random.o \
 	${OBJECTDIR}/Log.o \
 	${OBJECTDIR}/Player.o \
-	${OBJECTDIR}/Mage.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Mage.o \
 	${OBJECTDIR}/Enemy.o
 
 
@@ -100,15 +100,15 @@ ${OBJECTDIR}/Player.o: Player.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Player.o Player.cpp
 
-${OBJECTDIR}/Mage.o: Mage.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Mage.o Mage.cpp
-
 ${OBJECTDIR}/Game.o: Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/Mage.o: Mage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Mage.o Mage.cpp
 
 ${OBJECTDIR}/Enemy.o: Enemy.cpp 
 	${MKDIR} -p ${OBJECTDIR}

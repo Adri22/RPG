@@ -11,6 +11,8 @@
 #include <windows.h>
 #include <unistd.h>
 #include "Log.h"
+#include "Random.h"
+#include "sdl/sdl.h"
 
 using namespace std;
 
@@ -18,7 +20,6 @@ int main(int argc, char** argv)
 {
     g_pLogfile->CreateLogfile("log.html");
     g_pLogfile->Textout("Programm gestartet", true);
-    
     
     
     g_pLogfile->Textout("Programm beendet", false);

@@ -41,8 +41,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/Random.o \
 	${OBJECTDIR}/Log.o \
 	${OBJECTDIR}/Player.o \
-	${OBJECTDIR}/Mage.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Mage.o \
 	${OBJECTDIR}/Enemy.o
 
 
@@ -60,11 +60,15 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-lSDL.dll -lSDLmain SDL-1.2.15/lib/._libSDLmain.a SDL-1.2.15/lib/._libSDL.dll.a
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: SDL-1.2.15/lib/._libSDLmain.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: SDL-1.2.15/lib/._libSDL.dll.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -73,47 +77,47 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: ${OBJECTFILES}
 ${OBJECTDIR}/Archer.o: Archer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Archer.o Archer.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Archer.o Archer.cpp
 
 ${OBJECTDIR}/Warrior.o: Warrior.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Warrior.o Warrior.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Warrior.o Warrior.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/Random.o: Random.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Random.o Random.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Random.o Random.cpp
 
 ${OBJECTDIR}/Log.o: Log.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Log.o Log.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Log.o Log.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Player.o Player.cpp
-
-${OBJECTDIR}/Mage.o: Mage.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Mage.o Mage.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Player.o Player.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Game.o Game.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/Mage.o: Mage.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Mage.o Mage.cpp
 
 ${OBJECTDIR}/Enemy.o: Enemy.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Enemy.o Enemy.cpp
+	$(COMPILE.cc) -g -ISDL-1.2.15/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/Enemy.o Enemy.cpp
 
 # Subprojects
 .build-subprojects:
