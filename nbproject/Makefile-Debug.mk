@@ -60,15 +60,11 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lSDL.dll -lSDLmain SDL-1.2.15/lib/._libSDLmain.a SDL-1.2.15/lib/._libSDL.dll.a
+LDLIBSOPTIONS=-lSDL.dll -lSDLmain
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: SDL-1.2.15/lib/._libSDLmain.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: SDL-1.2.15/lib/._libSDL.dll.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/rpg.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
