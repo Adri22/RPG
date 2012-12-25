@@ -173,14 +173,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\Archer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Enemy.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Game.cpp"
 				>
 			</File>
@@ -189,25 +181,41 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Mage.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\main.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Player.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Random.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\Warrior.cpp"
+			<Filter
+				Name="PlayerSrc"
 				>
-			</File>
+				<File
+					RelativePath=".\Archer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Mage.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Player.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Warrior.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="EnemySrc"
+				>
+				<File
+					RelativePath=".\Enemy.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Headerdateien"
@@ -215,27 +223,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Archer.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Enemy.hpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Game.hpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Log.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Mage.hpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Player.hpp"
 				>
 			</File>
 			<File
@@ -246,10 +238,34 @@
 				RelativePath=".\Singleton.hpp"
 				>
 			</File>
-			<File
-				RelativePath=".\Warrior.hpp"
+			<Filter
+				Name="PlayerSrc"
 				>
-			</File>
+				<File
+					RelativePath=".\Archer.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Mage.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Player.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Warrior.hpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="EnemySrc"
+				>
+				<File
+					RelativePath=".\Enemy.hpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Ressourcendateien"
