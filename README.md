@@ -1,7 +1,7 @@
 RPG
 ===
 
-A simple RPG in C++
+A simple RPG, written in C++.
 
 Dependencies:
-	- SDL | Simple DirectMedia Layer (http://www.libsdl.org/)
+- SDL | Simple DirectMedia Layer (http://www.libsdl.org/)
