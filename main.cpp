@@ -11,7 +11,7 @@
 #include <windows.h>
 #include "Log.hpp"
 #include "Random.hpp"
-#include "sdl.h"
+#include "SDL.h"
 
 using namespace std;
 
@@ -25,11 +25,17 @@ int main(int argc, char** argv)
     SDL_Init( SDL_INIT_EVERYTHING );
     screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE );
    
-    SDL_Rect rect = {50,50,10,10};
-    SDL_FillRect(screen, &rect, 0xFF0000);
-    SDL_Flip(screen);
+	SDL_Rect rect = {50, 50, 10, 10};
+	SDL_FillRect(screen, &rect, 0xFF0000);
 
-    SDL_Delay(10000);
+	for(int i = 0; i < 1000; i++)
+	{
+		rect.x = i;
+		SDL_Flip(screen);
+	}
+    
+
+    // SDL_Delay(10000);
    
     SDL_Quit();
     

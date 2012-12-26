@@ -188,6 +188,10 @@
 				RelativePath=".\Random.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\Timer.cpp"
+				>
+			</File>
 			<Filter
 				Name="PlayerSrc"
 				>
@@ -236,6 +240,10 @@
 			</File>
 			<File
 				RelativePath=".\Singleton.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Timer.hpp"
 				>
 			</File>
 			<Filter
