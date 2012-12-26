@@ -20,6 +20,24 @@ int main(int argc, char** argv)
     g_pLogfile->CreateLogfile("log.html");
     g_pLogfile->Textout("Programm gestartet", true);
     
+	int points = 50;
+
+	int *p_points = NULL;
+
+	cout << "points-adresse: " << &points << endl;
+	cout << "points-variable: " << points << endl;
+
+	p_points = &points;
+
+	cout << "pointer-points-adresse: " << p_points << endl;
+
+	cout << "pointer-points-variable: " << *p_points << endl;
+	
+	p_points = NULL;
+
+
+	/*
+
 	SDL_Surface* screen = NULL;
 
     SDL_Init( SDL_INIT_EVERYTHING );
@@ -28,17 +46,14 @@ int main(int argc, char** argv)
 	SDL_Rect rect = {50, 50, 10, 10};
 	SDL_FillRect(screen, &rect, 0xFF0000);
 
-	for(int i = 0; i < 1000; i++)
-	{
-		rect.x = i;
-		SDL_Flip(screen);
-	}
+	SDL_Flip(screen);
     
-
-    // SDL_Delay(10000);
+    SDL_Delay(10000);
    
     SDL_Quit();
     
+	*/
+
     g_pLogfile->Textout("Programm beendet", false);
     g_pLogfile->Del();
     
