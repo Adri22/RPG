@@ -12,6 +12,8 @@
 #include "Log.hpp"
 #include "Random.hpp"
 #include "SDL.h"
+#include "Player.hpp"
+#include "Framework.hpp"
 
 using namespace std;
 
@@ -20,41 +22,38 @@ int main(int argc, char** argv)
     g_pLogfile->CreateLogfile("log.html");
     g_pLogfile->Textout("Programm gestartet", true);
     
-	int points = 50;
-
-	int *p_points = NULL;
-
-	cout << "points-adresse: " << &points << endl;
-	cout << "points-variable: " << points << endl;
-
-	p_points = &points;
-
-	cout << "pointer-points-adresse: " << p_points << endl;
-
-	cout << "pointer-points-variable: " << *p_points << endl;
-	
-	p_points = NULL;
+	g_pLogfile->Textout("Framework initialisieren ...", true);
+	if(g_pFramework->Init (800, 600, 16, false) == false)
+	{
+		g_pLogfile->Textout("Framework initialisieren fehlgeschlagen", true);
+		return (0);
+	}
+	else
+		g_pLogfile->Textout("Framework initialisiert", true);
+		
 
 
-	/*
 
-	SDL_Surface* screen = NULL;
 
-    SDL_Init( SDL_INIT_EVERYTHING );
-    screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE );
-   
-	SDL_Rect rect = {50, 50, 10, 10};
-	SDL_FillRect(screen, &rect, 0xFF0000);
+	Player pl;
 
-	SDL_Flip(screen);
-    
-    SDL_Delay(10000);
-   
-    SDL_Quit();
-    
-	*/
+	pl.displayStats();
 
-    g_pLogfile->Textout("Programm beendet", false);
+	pl.levelUp();
+
+	cout << "---------------------" << endl;
+
+	pl.displayStats();
+
+
+
+
+
+	g_pLogfile->Textout("Framework beenden ...", true);
+	g_pFramework->Quit();
+	g_pFramework->Del();
+
+    g_pLogfile->Textout("Programm beendet", true);
     g_pLogfile->Del();
     
     return 0;
