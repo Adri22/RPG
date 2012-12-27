@@ -29,6 +29,12 @@ Player::~Player()
 {
 }
 
+const float Player::vita_hp_factor			= 2.0;
+const float Player::str_dmg_factor			= 2.0;
+const float Player::dex_dmg_factor			= 1.5;
+const float Player::dex_speed_factor		= 0.2;
+const float Player::spirit_hpReg_factor		= 0.3;
+
 string Player::getName()
 {
     return name;
@@ -144,13 +150,15 @@ float Player::calcDMG()
 
 float Player::calcSpeed()
 {
-	speed = dex_speed_factor * dex;
+	const int dex_points = 15;
+	speed = dex_speed_factor * (dex / dex_points);
 	return speed;
 }
 
 float Player::calcHPreg()
 {
-	hpReg = spirit_hpReg_factor * spirit;
+	const int spirit_points = 10;
+	hpReg = spirit_hpReg_factor * (spirit / spirit_points);
 	return hpReg;
 }
 
@@ -166,45 +174,42 @@ void Player::levelUp()
 	//
 	int newVitaPoint = 1 + getVita();
 	setVita(newVitaPoint);
+	
+	chooseStatPoint();
+
 	calcHP();
+	calcDMG();
+	calcSpeed();
+}
+
+void Player::chooseStatPoint()
+{
+	// insert "choose-stat-logic" here and calc new dmg-value
+	//
 
 	// TEST
 	int currentStr = getStr();
-	currentStr++;
-	currentStr++;
 	currentStr++;
 	setStr(currentStr);
 	
 	// TEST
 	int currentDex = getDex();
 	currentDex++;
-	currentDex++;
-	currentDex++;
-	currentDex++;
-	currentDex++;
 	setDex(currentDex);
-
-	// TEST
-	calcDMG();
-	calcSpeed();
-
-
-
-	// insert "choose-stat-logic" here and calc new dmg-value
-	//
-
 }
 
 void Player::displayStats()
 {
-	cout << "Name: " << name << endl;
-	cout << "HP: " << hp << endl;
-	cout << "DMG: " << dmg << endl;
-	cout << "Speed: " << speed << endl;
-	cout << "HP-Reg: " << hpReg << endl;
-	cout << "Str: " << str << endl;
-	cout << "Vita: " << vita << endl;
-	cout << "Dex: " << dex << endl;
-	cout << "Spirit: " << spirit << endl;
-	cout << "Level: " << level << endl;
+	cout << "---------------------" << endl;
+	cout << "Name:   " <<	name		<< endl;
+	cout << "HP:     " <<	hp			<< endl;
+	cout << "DMG:    " <<	dmg			<< endl;
+	cout << "Speed:  " <<	speed		<< endl;
+	cout << "HP-Reg: " <<	hpReg		<< endl;
+	cout << "Str:    " <<	str			<< endl;
+	cout << "Vita:   " <<	vita		<< endl;
+	cout << "Dex:    " <<	dex			<< endl;
+	cout << "Spirit: " <<	spirit		<< endl;
+	cout << "Level:  " <<	level		<< endl;
+	cout << "---------------------" << endl;
 }

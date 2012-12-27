@@ -22,7 +22,7 @@ class Player : public TSingleton<Player>
         Player(const Player& orig);
         virtual ~Player();
         
-        string getName();
+        string	getName();
         float	getHP();
 		float	getDMG();
 		float	getSpeed();
@@ -46,6 +46,7 @@ class Player : public TSingleton<Player>
         
 		void levelUp();
 		void displayStats();
+		void chooseStatPoint();
 
     private:
 		float				calcHP();
@@ -62,11 +63,11 @@ class Player : public TSingleton<Player>
         int					dex;
         int					spirit;
 		int					level;
-		static const int	vita_hp_factor = 2;					// not working - has to be float !
-		static const int	str_dmg_factor = 2;					// not working - has to be float !
-		static const int	dex_dmg_factor = 1.5;				// not working - has to be float !
-		static const int	dex_speed_factor = 0.2;				// not working - has to be float !
-		static const int	spirit_hpReg_factor = 0.3;			// not working - has to be float !
+		static const float	vita_hp_factor;
+		static const float	str_dmg_factor;
+		static const float	dex_dmg_factor;
+		static const float	dex_speed_factor;
+		static const float	spirit_hpReg_factor;
 };
 
 #endif	/* PLAYER_H */

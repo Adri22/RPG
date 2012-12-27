@@ -23,7 +23,7 @@ int main(int argc, char** argv)
     g_pLogfile->Textout("Programm gestartet", true);
     
 	g_pLogfile->Textout("Framework initialisieren ...", true);
-	if(g_pFramework->Init (800, 600, 16, false) == false)
+	if(g_pFramework->Init(800, 600, 16, false) == false)
 	{
 		g_pLogfile->Textout("Framework initialisieren fehlgeschlagen", true);
 		return (0);
@@ -34,17 +34,21 @@ int main(int argc, char** argv)
 
 
 
-
+	// TEST
+	//
 	Player pl;
 
+	pl.setName("Test");
 	pl.displayStats();
 
 	pl.levelUp();
-
-	cout << "---------------------" << endl;
-
 	pl.displayStats();
 
+	pl.levelUp();
+	pl.displayStats();
+
+	pl.levelUp();
+	pl.displayStats();
 
 
 
