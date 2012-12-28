@@ -15,6 +15,7 @@ Player::Player()
 	dex = 5;
 	spirit = 10;
 	level = 1;
+	exp = 0;
 	hp = calcHP();
 	dmg = calcDMG();
 	speed = calcSpeed();
@@ -29,6 +30,8 @@ Player::~Player()
 {
 }
 
+const long  Player::exp_base				= 50000;
+const long  Player::exp_step				= 10000;
 const float Player::vita_hp_factor			= 2.0;
 const float Player::str_dmg_factor			= 2.0;
 const float Player::dex_dmg_factor			= 1.5;
@@ -162,6 +165,19 @@ float Player::calcHPreg()
 	return hpReg;
 }
 
+void Player::setEXP(long exp_gained)
+{
+	int current_level = getLevel();
+	long exp_needed = exp_base + ((--current_level) * exp_step);
+	cout << exp_needed << endl;
+	exp = exp + exp_gained;
+	if(exp >= exp_needed)
+	{
+		exp = exp - exp_needed;
+		levelUp();
+	}
+}
+
 void Player::levelUp()
 {
 	// increase level
@@ -171,7 +187,7 @@ void Player::levelUp()
 	setLevel(currentLevel);
 
 	//	increase vita by 1 and calc new hp-value
-	//
+	//	everytime, the player levels up, vita gets increased
 	int newVitaPoint = 1 + getVita();
 	setVita(newVitaPoint);
 	
@@ -180,6 +196,7 @@ void Player::levelUp()
 	calcHP();
 	calcDMG();
 	calcSpeed();
+	calcHPreg();
 }
 
 void Player::chooseStatPoint()
@@ -196,11 +213,16 @@ void Player::chooseStatPoint()
 	int currentDex = getDex();
 	currentDex++;
 	setDex(currentDex);
+
+	// TEST
+	int currentSpirit = getSpirit();
+	currentSpirit++;
+	setSpirit(currentSpirit);
 }
 
 void Player::displayStats()
 {
-	cout << "---------------------" << endl;
+	cout << "---------------------"		<< endl;
 	cout << "Name:   " <<	name		<< endl;
 	cout << "HP:     " <<	hp			<< endl;
 	cout << "DMG:    " <<	dmg			<< endl;
@@ -211,5 +233,6 @@ void Player::displayStats()
 	cout << "Dex:    " <<	dex			<< endl;
 	cout << "Spirit: " <<	spirit		<< endl;
 	cout << "Level:  " <<	level		<< endl;
-	cout << "---------------------" << endl;
+	cout << "EXP:    " <<	exp			<< endl;
+	cout << "---------------------"		<< endl;
 }

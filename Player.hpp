@@ -44,6 +44,7 @@ class Player : public TSingleton<Player>
         void setSpirit(int spirit);
 		void setLevel(int level);
         
+		void setEXP(long exp_gained);
 		void levelUp();
 		void displayStats();
 		void chooseStatPoint();
@@ -63,6 +64,9 @@ class Player : public TSingleton<Player>
         int					dex;
         int					spirit;
 		int					level;
+		long				exp;
+		static const long	exp_base;
+		static const long	exp_step;
 		static const float	vita_hp_factor;
 		static const float	str_dmg_factor;
 		static const float	dex_dmg_factor;
