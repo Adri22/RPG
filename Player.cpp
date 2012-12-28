@@ -169,8 +169,8 @@ void Player::setEXP(long exp_gained)
 {
 	int current_level = getLevel();
 	long exp_needed = exp_base + ((--current_level) * exp_step);
-	cout << exp_needed << endl;
 	exp = exp + exp_gained;
+
 	if(exp >= exp_needed)
 	{
 		exp = exp - exp_needed;
