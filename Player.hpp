@@ -54,6 +54,7 @@ class Player : public TSingleton<Player>
 		float				calcDMG();
 		float				calcSpeed();
 		float				calcHPreg();
+
         string				name;
         float				hp;
 		float				dmg;
@@ -65,6 +66,8 @@ class Player : public TSingleton<Player>
         int					spirit;
 		int					level;
 		long				exp;
+
+		static const int	maxLevel;
 		static const long	exp_base;
 		static const long	exp_step;
 		static const float	vita_hp_factor;

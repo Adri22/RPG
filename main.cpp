@@ -41,42 +41,9 @@ int main(int argc, char** argv)
 	pl.setName("Test");
 	pl.displayStats();
 
-	// EXP-TESTS
+	// EXP-TEST
 	//
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(30000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(30000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(10000);
-	pl.displayStats();
-
-	pl.setEXP(30000);
+	pl.setEXP(1000000);
 	pl.displayStats();
 
 

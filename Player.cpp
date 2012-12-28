@@ -30,6 +30,7 @@ Player::~Player()
 {
 }
 
+const int	Player::maxLevel				= 99;
 const long  Player::exp_base				= 50000;
 const long  Player::exp_step				= 10000;
 const float Player::vita_hp_factor			= 2.0;
@@ -167,15 +168,24 @@ float Player::calcHPreg()
 
 void Player::setEXP(long exp_gained)
 {
-	int current_level = getLevel();
-	long exp_needed = exp_base + ((--current_level) * exp_step);
 	exp = exp + exp_gained;
+	bool level_up = false;
 
-	if(exp >= exp_needed)
+	do
 	{
-		exp = exp - exp_needed;
-		levelUp();
-	}
+		int current_level = getLevel();
+		long exp_needed = exp_base + ((current_level - 1) * exp_step);
+		
+		if(current_level < maxLevel && exp >= exp_needed)
+		{
+			exp = exp - exp_needed;
+			levelUp();
+			level_up = true;
+		}
+		else
+			level_up = false;
+
+	}while(level_up == true);
 }
 
 void Player::levelUp()
