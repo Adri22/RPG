@@ -43,8 +43,8 @@ const float Player::spirit_hpReg_factor		= 0.3;
 void Player::Init()
 {
 	SpritePlayer = new CSprite;
-	SpritePlayer->Load ("Data/Test.jpg", 11, 64, 64);
-	// SpritePlayer->SetColorKey (255, 0, 255);
+	SpritePlayer->Load("Data/Test.bmp", 1, 30, 30);
+	SpritePlayer->SetColorKey(255, 0, 255);
 }
 
 void Player::Quit()
@@ -59,8 +59,8 @@ void Player::Quit()
 void Player::Reset()
 {
 	// Startposition des Spielers
-	xPos = 376.0;
-	xPos = 520.0;
+	xPos = 0.0;
+	xPos = 0.0;
 
 	// Animationsphase
 	animPhase = 1.0;
@@ -95,7 +95,7 @@ void Player::ProcessMoving()
 		xPos += 300.0 * g_pTimer->GetElapsed();
 
 		// Animieren
-		// animPhase += 20.0f * g_pTimer->GetElapsed();
+	    // animPhase += 20.0f * g_pTimer->GetElapsed();
 	}
 }
 
@@ -105,12 +105,13 @@ void Player::CheckPosition()
 	   xPos = 0.0;
 	else if(xPos > 752.0)
 	   xPos = 752.0;
-/*
+
+	/*
 	if(animPhase < 0.0)
 	   animPhase = 0.0;
 	else if(animPhase > 10.0)
 	   animPhase = 10.0;
-*/
+	*/
 }
 
 string Player::getName()

@@ -5,6 +5,8 @@
  * Created on 23. Dezember 2012, 18:38
  */
 
+#include "Player.hpp"
+
 #ifndef GAME_H
 #define	GAME_H
 
@@ -15,8 +17,15 @@ class Game
         Game(const Game& orig);
         virtual ~Game();
 
-    private:
+		void Init	();
+		void Run	();
+		void Quit	();
 
+    private:
+		void		ProcessEvents   ();
+
+		Player		*player;            // Player-Instance
+		bool		gameRun;            // Is the game still running?
 };
 
 #endif	/* GAME_H */

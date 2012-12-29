@@ -25,8 +25,6 @@ class Player
 		void	Reset();
 		void	Render();
 		void	Update();
-		void	ProcessMoving();
-		void	CheckPosition();
 
         string	getName();
         float	getHP();
@@ -56,6 +54,9 @@ class Player
 		void chooseStatPoint();
 
     private:
+		void				ProcessMoving();
+		void				CheckPosition();
+
 		float				calcHP();
 		float				calcDMG();
 		float				calcSpeed();

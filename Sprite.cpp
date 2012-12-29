@@ -1,4 +1,5 @@
 
+#include "Log.hpp"
 #include "Sprite.hpp"
 
 // Konstruktor
@@ -34,6 +35,7 @@ void CSprite::Load(const string sFilename)
 	if(m_pImage == NULL)
 	{
 		cout << "Fehler beim Laden von: " << sFilename.c_str();
+		g_pLogfile->Textout("Fehler beim Laden der Grafik", true);
 		cout << endl;
 		cout << "Fehlermeldung: " << SDL_GetError() << endl;
 
@@ -100,7 +102,7 @@ void CSprite::SetPos(float fXPos, float fYPos)
 //
 // Aufgabe: Sprite rendern (ohne Animation)
 //
-void CSprite::Render ()
+void CSprite::Render()
 {
 	// Sprite rendern
 	SDL_BlitSurface(m_pImage, NULL, m_pScreen, &m_Rect);

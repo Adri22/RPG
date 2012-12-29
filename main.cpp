@@ -14,6 +14,7 @@
 #include "SDL.h"
 #include "Player.hpp"
 #include "Framework.hpp"
+#include "Game.hpp"
 
 using namespace std;
 
@@ -31,23 +32,11 @@ int main(int argc, char** argv)
 	else
 		g_pLogfile->Textout("Framework initialisiert", true);
 		
+	Game game;
 
-
-
-	// TEST
-	//
-	Player pl;
-
-	pl.setName("Test");
-	pl.displayStats();
-
-	// EXP-TEST
-	//
-	// pl.setEXP(150000);
-	// pl.displayStats();
-
-
-
+	game.Init();
+	game.Run();
+	game.Quit();
 
 	g_pLogfile->Textout("Framework beenden ...", true);
 	g_pFramework->Quit();
