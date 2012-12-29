@@ -6,22 +6,28 @@
  */
 
 #include <string>
-#include "Singleton.hpp"
+#include "Sprite.hpp"
 
 #ifndef PLAYER_H
 #define	PLAYER_H
 
-#define g_pPlayer Player::Get()              // Makro zur einfacheren Verwendung
-
 using namespace std;
 
-class Player : public TSingleton<Player>
+class Player
 {
     public:
         Player();
         Player(const Player& orig);
         virtual ~Player();
         
+		void	Init();
+		void	Quit();
+		void	Reset();
+		void	Render();
+		void	Update();
+		void	ProcessMoving();
+		void	CheckPosition();
+
         string	getName();
         float	getHP();
 		float	getDMG();
@@ -56,6 +62,9 @@ class Player : public TSingleton<Player>
 		float				calcHPreg();
 
         string				name;
+		float				xPos;
+		float				yPos;
+		float				animPhase;
         float				hp;
 		float				dmg;
 		float				speed;
@@ -66,6 +75,8 @@ class Player : public TSingleton<Player>
         int					spirit;
 		int					level;
 		long				exp;
+
+		CSprite				*SpritePlayer;
 
 		static const int	maxLevel;
 		static const long	exp_base;

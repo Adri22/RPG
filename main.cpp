@@ -43,8 +43,8 @@ int main(int argc, char** argv)
 
 	// EXP-TEST
 	//
-	pl.setEXP(3170000);
-	pl.displayStats();
+	// pl.setEXP(150000);
+	// pl.displayStats();
 
 
 

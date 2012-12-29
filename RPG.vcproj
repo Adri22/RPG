@@ -193,6 +193,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Sprite.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Timer.cpp"
 				>
 			</File>
@@ -248,6 +252,10 @@
 			</File>
 			<File
 				RelativePath=".\Singleton.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Sprite.hpp"
 				>
 			</File>
 			<File

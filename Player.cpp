@@ -10,6 +10,7 @@
 
 Player::Player() 
 {
+	SpritePlayer = NULL;
 	str = 5;
 	vita = 10;
 	dex = 5;
@@ -38,6 +39,79 @@ const float Player::str_dmg_factor			= 2.0;
 const float Player::dex_dmg_factor			= 1.5;
 const float Player::dex_speed_factor		= 0.2;
 const float Player::spirit_hpReg_factor		= 0.3;
+
+void Player::Init()
+{
+	SpritePlayer = new CSprite;
+	SpritePlayer->Load ("Data/Test.jpg", 11, 64, 64);
+	// SpritePlayer->SetColorKey (255, 0, 255);
+}
+
+void Player::Quit()
+{
+	if(SpritePlayer != NULL)
+	{
+		delete(SpritePlayer);
+		SpritePlayer = NULL;
+	}
+}
+
+void Player::Reset()
+{
+	// Startposition des Spielers
+	xPos = 376.0;
+	xPos = 520.0;
+
+	// Animationsphase
+	animPhase = 1.0;
+}
+
+void Player::Render()
+{
+	// Position des Spielers setzen und Sprite rendern
+	SpritePlayer->SetPos(xPos, yPos);
+	SpritePlayer->Render(animPhase);
+}
+
+void Player::Update()
+{
+	ProcessMoving();
+	CheckPosition();
+}
+
+void Player::ProcessMoving()
+{
+	if(g_pFramework->KeyDown(SDLK_LEFT))
+	{
+		// Spieler nach links bewegen
+		xPos -= 300.0 * g_pTimer->GetElapsed();
+
+		// Animieren
+		// animPhase -= 20.0f * g_pTimer->GetElapsed();
+	}
+	else if(g_pFramework->KeyDown(SDLK_RIGHT))
+	{
+		// Spieler nach rechts bewegen
+		xPos += 300.0 * g_pTimer->GetElapsed();
+
+		// Animieren
+		// animPhase += 20.0f * g_pTimer->GetElapsed();
+	}
+}
+
+void Player::CheckPosition()
+{
+	if(xPos < 0.0)
+	   xPos = 0.0;
+	else if(xPos > 752.0)
+	   xPos = 752.0;
+/*
+	if(animPhase < 0.0)
+	   animPhase = 0.0;
+	else if(animPhase > 10.0)
+	   animPhase = 10.0;
+*/
+}
 
 string Player::getName()
 {
@@ -190,11 +264,15 @@ void Player::setEXP(long exp_gained)
 
 void Player::levelUp()
 {
+	cout << "Level Up!" << endl;
+
 	// increase level
 	//
 	int currentLevel = getLevel();
 	currentLevel++;
 	setLevel(currentLevel);
+
+	cout << "You have reached level " << currentLevel << "!" << endl;
 
 	//	increase vita by 1 and calc new hp-value
 	//	everytime, the player levels up, vita gets increased
@@ -211,23 +289,49 @@ void Player::levelUp()
 
 void Player::chooseStatPoint()
 {
-	// insert "choose-stat-logic" here and calc new dmg-value
-	//
-
-	// TEST
-	int currentStr = getStr();
-	currentStr++;
-	setStr(currentStr);
+	cout << "Increase your stats!" << endl;
+	cout << "You can choose between three attributes: " << endl;
+	cout << "Strength	[1]" << endl;
+	cout << "Dexterity	[2]" << endl;
+	cout << "Spirit		[3]" << endl;
 	
-	// TEST
+	bool pointSet;
+	int choose;
+	int currentStr = getStr();
 	int currentDex = getDex();
-	currentDex++;
-	setDex(currentDex);
-
-	// TEST
 	int currentSpirit = getSpirit();
-	currentSpirit++;
-	setSpirit(currentSpirit);
+
+	do
+	{
+		cout << "Enter: ";
+		cin >> choose;
+
+		switch(choose)
+		{
+			case 1:
+				currentStr++;
+				setStr(currentStr);
+				pointSet = true;
+				break;
+
+			case 2:
+				currentDex++;
+				setDex(currentDex);
+				pointSet = true;
+				break;
+
+			case 3:
+				currentSpirit++;
+				setSpirit(currentSpirit);
+				pointSet = true;
+				break;
+
+			default:
+				cout << "wrong entry!" << endl;
+				pointSet = false;
+				break;
+		}
+	}while(!pointSet);
 }
 
 void Player::displayStats()
