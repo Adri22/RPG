@@ -43,7 +43,8 @@ const float Player::spirit_hpReg_factor		= 0.3;
 void Player::Init()
 {
 	SpritePlayer = new CSprite;
-	SpritePlayer->Load("Data/Test.bmp", 1, 30, 30);
+	// SpritePlayer->Load("Data/Test.bmp");
+	SpritePlayer->Load("Data/Test.bmp", 1, 30, 30);    // not finished !
 	SpritePlayer->SetColorKey(255, 0, 255);
 }
 
@@ -58,17 +59,16 @@ void Player::Quit()
 
 void Player::Reset()
 {
-	// Startposition des Spielers
-	xPos = 0.0;
-	xPos = 0.0;
+	// startposition
+	xPos = 376.0;
+	yPos = 520.0;
 
-	// Animationsphase
-	animPhase = 1.0;
+	animPhase = 0.0;     // not finished !
 }
 
 void Player::Render()
 {
-	// Position des Spielers setzen und Sprite rendern
+	// set playerposition and render sprite
 	SpritePlayer->SetPos(xPos, yPos);
 	SpritePlayer->Render(animPhase);
 }
@@ -83,30 +83,61 @@ void Player::ProcessMoving()
 {
 	if(g_pFramework->KeyDown(SDLK_LEFT))
 	{
-		// Spieler nach links bewegen
+		// move player rightwards
+		//
 		xPos -= 300.0 * g_pTimer->GetElapsed();
 
-		// Animieren
-		// animPhase -= 20.0f * g_pTimer->GetElapsed();
+		// animate
+		//
+		// animPhase -= 20.0f * g_pTimer->GetElapsed();		// not finished !
 	}
 	else if(g_pFramework->KeyDown(SDLK_RIGHT))
 	{
-		// Spieler nach rechts bewegen
+		// move player leftwards
+		//
 		xPos += 300.0 * g_pTimer->GetElapsed();
 
-		// Animieren
-	    // animPhase += 20.0f * g_pTimer->GetElapsed();
+		// animate
+		//
+	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
+	else if(g_pFramework->KeyDown(SDLK_UP))
+	{
+		// move player up
+		//
+		yPos -= 300.0 * g_pTimer->GetElapsed();
+
+		// animate
+		//
+	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
+	else if(g_pFramework->KeyDown(SDLK_DOWN))
+	{
+		// move player down
+		//
+		yPos += 300.0 * g_pTimer->GetElapsed();
+
+		// animate
+		//
+	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
 	}
 }
 
 void Player::CheckPosition()
 {
+	// not finished !
+	//
 	if(xPos < 0.0)
 	   xPos = 0.0;
-	else if(xPos > 752.0)
-	   xPos = 752.0;
+	else if(xPos > 770.0)
+	   xPos = 770.0;
+	else if(yPos < 0.0)
+	   yPos = 0.0;
+	else if(yPos > 570.0)
+	   yPos = 570.0;
 
-	/*
+	/*		// not finished !
+			//
 	if(animPhase < 0.0)
 	   animPhase = 0.0;
 	else if(animPhase > 10.0)

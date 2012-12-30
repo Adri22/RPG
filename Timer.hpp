@@ -17,10 +17,9 @@ class CTimer : public TSingleton<CTimer>
 		}
 
 	private:
-		float m_fElapsed;  // Vergangene Zeit seit dem letzten Frame
-		float m_fCurTime;  // Aktuelle Zeit
-		float m_fLastTime; // Zeit des letzten Frames
-
+		float m_fElapsed;
+		float m_fCurTime;
+		float m_fLastTime;
 };
 
 #endif

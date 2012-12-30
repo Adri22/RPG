@@ -10,6 +10,7 @@
 Game::Game() 
 {
 	player = NULL;
+	SpriteBackground = NULL;
 }
 
 Game::Game(const Game& orig) 
@@ -27,6 +28,9 @@ void Game::Init()
 	player->Init();
 	player->Reset();
 
+	SpriteBackground = new CSprite;
+	SpriteBackground->Load("Data/Background_Test.bmp");
+
 	// game starts
 	gameRun = true;
 }
@@ -43,6 +47,8 @@ void Game::Run()
 		g_pFramework->Update();
 		g_pFramework->Clear();
 
+		SpriteBackground->Render();
+
 		// update and render player
 		player->Update();
 		player->Render();
@@ -58,6 +64,12 @@ void Game::Quit()
 		player->Quit();
 		delete(player);
 		player = NULL;
+	}
+
+	if(SpriteBackground != NULL)
+	{
+		delete(SpriteBackground);
+		SpriteBackground = NULL;
 	}
 }
 

@@ -24,8 +24,9 @@ class Game
     private:
 		void		ProcessEvents   ();
 
-		Player		*player;            // Player-Instance
-		bool		gameRun;            // Is the game still running?
+		Player		*player;             // Player-Instance
+		CSprite		*SpriteBackground;   
+		bool		gameRun;             // Is the game still running?
 };
 
 #endif	/* GAME_H */

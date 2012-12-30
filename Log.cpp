@@ -7,36 +7,29 @@
 
 #include "Log.hpp"
 
-// Konstruktor
-//
 Log::Log(){}
 
-// Destruktor
-// ---------------------------------------
-// Gibt Ende-Meldung aus und schließ das Logfile
-//
 Log::~Log()
 {
-	// Logfile-Ende schreiben und Datei schließen
+	// write end of logfile and close file
 	Textout("<br><br> ------------------------------------", false);
         Textout("<br> End of logfile </font></body></html>", false);
 	fclose(m_Logfile);
 }
 
 // CreateLogfile
-// ---------------------------------------
-// Logfile erstellen und Kopf schreiben
 //
 void Log::CreateLogfile(const char *LogName)
 {
-	// Logfile leeren und Kopf schreiben
+	// clear log and write head
 	m_Logfile = fopen(LogName, "w");
 	Textout("<html><head><title> Logfile </title></head>", false);
 	Textout("<body><font face='courier new'>", false);
 	WriteTopic("Logfile", 3);
 
     /*
-	// Aktuelle Build-Konfiguration ausgeben
+	// release- or debug-build?
+	//
 #ifdef _RELEASE
         Textout("BUILD: RELEASE <br>", false);
 #else
@@ -44,13 +37,14 @@ void Log::CreateLogfile(const char *LogName)
 #endif
     */
         
-	// Link für E-Mail-Adresse schreiben
+	// add email
+	//
 //	Textout("<a href='mailto:support@meineURL.de?subject=Logfile'>");
 //	Textout("Send E-Mail to me</a><br><br>");
 
         Textout("<br><br>", false);
         
-	// Logfile schließen und mit append wieder öffnen
+	// close log and open it again with "append" 
 	fclose(m_Logfile);
 	m_Logfile = fopen(LogName, "a");
 
@@ -58,11 +52,10 @@ void Log::CreateLogfile(const char *LogName)
 
 // WriteTopic
 // ---------------------------------------
-// Überschrift erzeugen
 //
 void Log::WriteTopic(const char *Topic, int Size)
 {
-	// Überschrift schreiben und flushen
+	// write headline and flush it
 	Textout("<table cellspacing='0' cellpadding='0' width='100%%' ", false);
 	Textout("bgcolor='#DFDFE5'>\n<tr>\n<td>\n<font face='arial' ", false);
 	fTextout("size='+%i'>\n", Size);
@@ -73,11 +66,9 @@ void Log::WriteTopic(const char *Topic, int Size)
 
 // Textout
 // ---------------------------------------
-// Text ins Logfile schreiben
 //
 void Log::Textout(const char *Text, bool endl)
 {     
-	// Text schreiben und flushen
 	fprintf(m_Logfile, Text);
 	fflush(m_Logfile);
         
@@ -88,29 +79,25 @@ void Log::Textout(const char *Text, bool endl)
         }
 }
 
-// Textout
+// Textout (color)
 // ---------------------------------------
-// Text ins Logfile schreiben (farbig)
 //
 void Log::Textout(int Color, const char *Text, bool endl)
 {
 	Textout(Color, Text, false, endl);
 }
 
-// Textout
+// Textout (color, list)
 // ---------------------------------------
-// Text ins Logfile schreiben (farbig, Liste)
 //
 void Log::Textout(int Color, const char *Text, bool List, bool endl)
 {
-	// Listen-Tag schreiben
 	if(List == true)
         {
             Textout("<li>", false);
             endl = false;
         }
 
-	// Farbtag schreiben
 	switch(Color)
 	{
 		case BLACK:
@@ -125,7 +112,6 @@ void Log::Textout(int Color, const char *Text, bool List, bool endl)
 			Textout("<font color=purple>", false); break;
 	};
 
-	// Text schreiben
 	Textout(Text, endl);
 	Textout("</font>", false);
 
@@ -133,63 +119,53 @@ void Log::Textout(int Color, const char *Text, bool List, bool endl)
             Textout("</li>", false);
 }
 
-// fTextout
+// fTextout (format)
 // ---------------------------------------
-// Formatierten Text ins Logfile schreiben (schwarz)
 //
 void Log::fTextout(const char *Text, ...)
 {
 	char buffer[MAX_BUFFER];  // char-Buffer
-	va_list pArgList;         // Liste der übergebenen Argumente
+	va_list pArgList;         
 
-	// String aus den Argumenten erstellen
 	va_start(pArgList, Text);
 	vsprintf(buffer, Text, pArgList);
 	va_end(pArgList);
 
-	// Erzeugten String schreiben
 	Textout(buffer, false);
 }
 
-// fTextout
+// fTextout (format, color)
 // ---------------------------------------
-// Formatierten Text ins Logfile schreiben (farbig)
 //
 void Log::fTextout(int Color, const char *Text, ...)
 {
-	char buffer[MAX_BUFFER];  // char-Buffer
-	va_list pArgList;         // Liste der übergebenen Argumente
+	char buffer[MAX_BUFFER];  
+	va_list pArgList;         
 
-	// String aus den Argumenten erstellen
 	va_start(pArgList, Text);
 	vsprintf(buffer, Text, pArgList);
 	va_end(pArgList);
 
-	// Erzeugten String schreiben
 	Textout(Color, buffer, false);
 }
 
-// fTextout
+// fTextout (format, color, list)
 // ---------------------------------------
-// Formatierten Text ins Logfile schreiben (farbig, Liste)
 //
 void Log::fTextout(int Color, bool List, const char *Text, ...)
 {
-	char buffer[MAX_BUFFER];  // char-Buffer
-	va_list pArgList;         // Liste der übergebenen Argumente
+	char buffer[MAX_BUFFER]; 
+	va_list pArgList;         
 
-	// String aus den Argumenten erstellen
 	va_start(pArgList, Text);
 	vsprintf(buffer, Text, pArgList);
 	va_end(pArgList);
 
-	// Erzeugten String schreiben
 	Textout(Color, buffer, List, false);
 }
 
 // FunctionResult
 // ---------------------------------------
-// OK oder ERROR für Funktionsaufruf ausgeben
 //
 void Log::FunctionResult(const char *Name, bool Result)
 {

@@ -7,12 +7,9 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <string>
 #include <windows.h>
 #include "Log.hpp"
-#include "Random.hpp"
 #include "SDL.h"
-#include "Player.hpp"
 #include "Framework.hpp"
 #include "Game.hpp"
 

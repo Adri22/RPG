@@ -29,9 +29,8 @@ class CFramework : public TSingleton<CFramework>
 		}
 
 	private:
-		SDL_Surface *m_pScreen;   // Surface für den Screen
-		Uint8       *m_pKeystate; // Array für aktuellen Tastaturstatus
-
+		SDL_Surface *m_pScreen;   // Screen-Surface
+		Uint8       *m_pKeystate; // Keystate-Array
 };
 
 #endif

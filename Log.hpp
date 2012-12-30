@@ -15,7 +15,7 @@
 #define MAX_BUFFER 1024
 #define L_FAIL false
 #define L_OK true
-#define g_pLogfile Log::Get()              // Makro zur einfacheren Verwendung
+#define g_pLogfile Log::Get()            
 
 enum FONTCOLORS
 {

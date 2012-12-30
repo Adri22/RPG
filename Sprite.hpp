@@ -25,14 +25,14 @@ class CSprite
 		}
 
 	private:
-		SDL_Surface *m_pScreen; // Zeiger auf den Screen des Frameworks
-		SDL_Surface *m_pImage;  // Das eigentliche Bild des Sprites
-		SDL_Rect m_Rect;        // Rect des Sprites
-		SDL_Rect m_FrameRect;   // Ausschnitt für Animationsphase
-		int m_NumFrames;        // Anzahl der Animationsphasen
-		int m_FrameWidth;       // Breite einer Animationsphase
-		int m_FrameHeight;      // Höhe einer Animationsphase
-		int m_NumFramesX;       // Wie viele Anim-Phasen in X-Richtung?
+		SDL_Surface *m_pScreen; 
+		SDL_Surface *m_pImage;  
+		SDL_Rect m_Rect;        
+		SDL_Rect m_FrameRect;   
+		int m_NumFrames;        
+		int m_FrameWidth;       
+		int m_FrameHeight;      
+		int m_NumFramesX;       
 };
 
 #endif

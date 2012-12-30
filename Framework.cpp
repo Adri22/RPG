@@ -1,8 +1,6 @@
 #include "Framework.hpp"
 
-// Init
-//
-// Aufgabe: Framework initialisieren
+// Init framework
 //
 bool CFramework::Init(	int ScreenWidth, 
 						int ScreenHeight,
@@ -10,7 +8,6 @@ bool CFramework::Init(	int ScreenWidth,
 						bool bFullscreen
 					  )
 {
-	// Alle Systeme der SDL initialisieren
 	if(SDL_Init (SDL_INIT_VIDEO | SDL_INIT_TIMER) == -1)
 	{
 		cout << "SDL konnte nicht initialisiert werden!" << endl;
@@ -21,7 +18,7 @@ bool CFramework::Init(	int ScreenWidth,
 		return(false);
 	}
 
-	// Vollbild oder Fenstermodus einstellen
+	// fullscreen or window?
 	if(bFullscreen == true)
 	{
 		m_pScreen = SDL_SetVideoMode(	ScreenWidth, 
@@ -39,7 +36,7 @@ bool CFramework::Init(	int ScreenWidth,
 									);
 	}
 
-	// Prüfen, ob alles funktioniert hat
+	// everything allright?
 	if(m_pScreen == NULL)
 	{
 		cout << "Videomodus konnte nicht gesetzt werden!" << endl;
@@ -50,64 +47,49 @@ bool CFramework::Init(	int ScreenWidth,
 		return(false);
 	}
 
-	// Zeiger auf internes Array für Tastaturstatus ermitteln
+	// point to internal keystate-array
 	m_pKeystate = SDL_GetKeyState(NULL);
 
-	// Alles ging glatt, also true zurückliefern
 	return(true);
 }
 
 // Quit
 //
-// Aufgabe: Framework (SDL) beenden
-//
 void CFramework::Quit()
 {
-	// SDL beenden
 	SDL_Quit();
 }
 
 // Update
 //
-// Aufgabe: Timer und Keyboardstatus updaten
-//
 void CFramework::Update()
 {
-	// Timer updaten
+	// update timer
 	g_pTimer->Update();
 
-	// Tastaturstatus ermitteln
+	// detection current keystates
 	SDL_PumpEvents();
 }
 
 // Keydown
 //
-// Aufgabe: Tastendruck abfragen
-//
 bool CFramework::KeyDown(int Key_ID)
 {
-	// Prüfen, ob Taste gedrückt ist
 	return(m_pKeystate[Key_ID] ? true : false);
 }
 
-// Clear
-//
-// Aufgabe: Buffer löschen
+// Clear buffer
 //
 void CFramework::Clear ()
 {
-	// Buffer (Surface) mit Hintergrundfarbe füllen
 	SDL_FillRect(m_pScreen, NULL,
 	SDL_MapRGB(m_pScreen->format, 0, 0, 0));
 }
 
 // Flip
 //
-// Aufgabe: Surface umschalten (flippen)
-//
 void CFramework::Flip()
 {
-	// Surface umschalten
 	SDL_Flip(m_pScreen);
 }
 
