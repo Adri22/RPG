@@ -50,8 +50,8 @@ class Player
         
 		void setEXP(long exp_gained);
 		void levelUp();
-		void displayStats();
 		void chooseStatPoint();
+		void displayStats();
 
     private:
 		void				ProcessMoving();

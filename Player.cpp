@@ -34,10 +34,10 @@ Player::~Player()
 const int	Player::maxLevel				= 99;
 const long  Player::exp_base				= 50000;
 const long  Player::exp_step				= 10000;
-const float Player::vita_hp_factor			= 2.0;
+const float Player::vita_hp_factor			= 2.5;
 const float Player::str_dmg_factor			= 2.0;
 const float Player::dex_dmg_factor			= 1.5;
-const float Player::dex_speed_factor		= 0.2;
+const float Player::dex_speed_factor		= 1.2;
 const float Player::spirit_hpReg_factor		= 0.3;
 
 void Player::Init()
@@ -85,7 +85,7 @@ void Player::ProcessMoving()
 	{
 		// move player rightwards
 		//
-		xPos -= 300.0 * g_pTimer->GetElapsed();
+		xPos -= (50.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -95,7 +95,7 @@ void Player::ProcessMoving()
 	{
 		// move player leftwards
 		//
-		xPos += 300.0 * g_pTimer->GetElapsed();
+		xPos += (50.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -105,7 +105,7 @@ void Player::ProcessMoving()
 	{
 		// move player up
 		//
-		yPos -= 300.0 * g_pTimer->GetElapsed();
+		yPos -= (50.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -115,7 +115,7 @@ void Player::ProcessMoving()
 	{
 		// move player down
 		//
-		yPos += 300.0 * g_pTimer->GetElapsed();
+		yPos += (50.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -262,6 +262,10 @@ float Player::calcSpeed()
 {
 	const int dex_points = 15;
 	speed = dex_speed_factor * (dex / dex_points);
+
+	if(speed < 1)
+		speed = 1;
+
 	return speed;
 }
 
