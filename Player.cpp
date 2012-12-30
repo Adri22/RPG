@@ -81,46 +81,110 @@ void Player::Update()
 
 void Player::ProcessMoving()
 {
-	if(g_pFramework->KeyDown(SDLK_LEFT))
-	{
-		// move player rightwards
-		//
-		xPos -= (50.0 * speed) * g_pTimer->GetElapsed();
+	bool diagonal = false;
 
-		// animate
-		//
-		// animPhase -= 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_RIGHT))
+	// horizontal and vertical moving
+	// -----------------------------------
+	//
+	if(!diagonal)
+		if(g_pFramework->KeyDown(SDLK_LEFT))
+		{
+			// move player leftwards
+			//
+			xPos -= (50.0 * speed) * g_pTimer->GetElapsed();
+
+			// animate
+			//
+			// animPhase -= 20.0f * g_pTimer->GetElapsed();		// not finished !
+		}
+		else if(g_pFramework->KeyDown(SDLK_RIGHT))
+		{
+			// move player rightwards
+			//
+			xPos += (50.0 * speed) * g_pTimer->GetElapsed();
+
+			// animate
+			//
+			// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+		}
+		else if(g_pFramework->KeyDown(SDLK_UP))
+		{
+			// move player up
+			//
+			yPos -= (50.0 * speed) * g_pTimer->GetElapsed();
+
+			// animate
+			//
+			// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+		}
+		else if(g_pFramework->KeyDown(SDLK_DOWN))
+		{
+			// move player down
+			//
+			yPos += (50.0 * speed) * g_pTimer->GetElapsed();
+
+			// animate
+			//
+			// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+		}
+	
+	// diagonal moving
+	// ------------------
+	//
+	if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_RIGHT))
 	{
-		// move player leftwards
+		diagonal = true;
+
+		// move player down and right
 		//
-		xPos += (50.0 * speed) * g_pTimer->GetElapsed();
+		xPos += (25.0 * speed) * g_pTimer->GetElapsed();
+		yPos += (25.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
 	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
 	}
-	else if(g_pFramework->KeyDown(SDLK_UP))
+	else if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_LEFT))
 	{
-		// move player up
+		diagonal = true;
+
+		// move player down and left
 		//
-		yPos -= (50.0 * speed) * g_pTimer->GetElapsed();
+		xPos -= (25.0 * speed) * g_pTimer->GetElapsed();
+		yPos += (25.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
 	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
 	}
-	else if(g_pFramework->KeyDown(SDLK_DOWN))
+	else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_RIGHT))
 	{
-		// move player down
+		diagonal = true;
+
+		// move player up and right
 		//
-		yPos += (50.0 * speed) * g_pTimer->GetElapsed();
+		xPos += (25.0 * speed) * g_pTimer->GetElapsed();
+		yPos -= (25.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
 	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
 	}
+	else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_LEFT))
+	{
+		diagonal = true;
+
+		// move player up and left
+		//
+		xPos -= (25.0 * speed) * g_pTimer->GetElapsed();
+		yPos -= (25.0 * speed) * g_pTimer->GetElapsed();
+
+		// animate
+		//
+	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
+	else
+		diagonal = false;
 }
 
 void Player::CheckPosition()
@@ -260,7 +324,7 @@ float Player::calcDMG()
 
 float Player::calcSpeed()
 {
-	const int dex_points = 15;
+	const int dex_points = 10;
 	speed = dex_speed_factor * (dex / dex_points);
 
 	if(speed < 1)
