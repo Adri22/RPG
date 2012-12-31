@@ -31,6 +31,8 @@ void Game::Init()
 	SpriteBackground = new CSprite;
 	SpriteBackground->Load("Data/Background_Test.bmp");
 
+	spawnTimer = 0.0;
+
 	// game starts
 	gameRun = true;
 }
@@ -52,6 +54,9 @@ void Game::Run()
 		// update and render player
 		player->Update();
 		player->Render();
+
+		SpawnEnemys();
+		HandleEnemys();
 
 		g_pFramework->Flip();
 	}
@@ -95,4 +100,36 @@ void Game::ProcessEvents()
 				break;
 		}
 	}
+}
+
+void Game::SpawnEnemys()
+{
+	spawnTimer += g_pTimer->GetElapsed();
+
+	if(spawnTimer >= 1.0)
+	{
+		Enemy enemy;
+		enemy.Init();
+		enemy.Reset();
+
+		EnemyList.push_back(enemy);
+
+		spawnTimer = 0.0;
+	}
+}
+
+void Game::HandleEnemys()
+{
+	list<Enemy>::iterator It;
+
+	for(It = EnemyList.begin(); It != EnemyList.end(); ++It)
+	{
+		It->Render();
+		It->Update();
+		It->KI();
+	}
+}
+
+void Game::CheckCollisions()
+{
 }

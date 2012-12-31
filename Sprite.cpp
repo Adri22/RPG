@@ -23,9 +23,10 @@ void CSprite::Load(const string sFilename)
 	// NULL-Check
 	if(m_pImage == NULL)
 	{
-		cout << "Fehler beim Laden von: " << sFilename.c_str();
-		g_pLogfile->Textout("Fehler beim Laden der Grafik", true);
-		cout << endl;
+		g_pLogfile->Textout("Fehler beim Laden der Grafik: ", false);
+		g_pLogfile->Textout(sFilename.c_str(), true);
+
+		cout << "Fehler beim Laden von: " << sFilename.c_str() << endl;
 		cout << "Fehlermeldung: " << SDL_GetError() << endl;
 
 		// delete framework
@@ -74,6 +75,8 @@ void CSprite::SetColorKey(int R, int G, int B)
 //
 void CSprite::SetPos(float fXPos, float fYPos)
 {
+	cout << "setpos " << fXPos << " " << fYPos << endl;
+
 	// update rect
 	m_Rect.x = static_cast<int>(fXPos);
 	m_Rect.y = static_cast<int>(fYPos);

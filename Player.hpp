@@ -36,6 +36,7 @@ class Player
         int		getDex();
         int		getSpirit();
         int		getLevel();
+		float	getCurrentHP();
 
         void setName(string name);
         void setHP(float hp);
@@ -47,7 +48,8 @@ class Player
         void setDex(int dex);
         void setSpirit(int spirit);
 		void setLevel(int level);
-        
+        void setCurrentHP(float newhp);
+
 		void setEXP(long exp_gained);
 		void levelUp();
 		void chooseStatPoint();
@@ -66,6 +68,7 @@ class Player
 		float				xPos;
 		float				yPos;
 		float				animPhase;
+		float				currentHP;
         float				hp;
 		float				dmg;
 		float				speed;

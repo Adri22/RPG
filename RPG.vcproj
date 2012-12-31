@@ -301,6 +301,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Data\Placeholder_Enemy.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\Data\Test.bmp"
 				>
 			</File>

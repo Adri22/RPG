@@ -21,6 +21,7 @@ Player::Player()
 	dmg = calcDMG();
 	speed = calcSpeed();
 	hpReg = calcHPreg();
+	currentHP = hp;
 }
 
 Player::Player(const Player& orig) 
@@ -259,6 +260,11 @@ int Player::getLevel()
 	return level;
 }
 
+float Player::getCurrentHP()
+{
+	return currentHP;
+}
+
 void Player::setName(string name)
 {
     this->name = name;
@@ -307,6 +313,11 @@ void Player::setSpirit(int spirit)
 void Player::setLevel(int level)
 {
 	this->level = level;
+}
+
+void Player::setCurrentHP(float newhp)
+{
+	newhp = currentHP;
 }
 
 float Player::calcHP()

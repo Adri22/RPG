@@ -9,6 +9,7 @@
 
 Enemy::Enemy() 
 {
+	currentHP = hp;
 }
 
 Enemy::Enemy(const Enemy& orig) 
@@ -19,12 +20,78 @@ Enemy::~Enemy()
 {
 }
 
-int Enemy::getHP()
+const float	Enemy::hp					= 150;
+const long  Enemy::exp_earn				= 5000;
+
+void Enemy::Init()
+{
+	SpriteEnemy = new CSprite;
+	SpriteEnemy->Load("Data/Placeholder_Enemy.bmp", 1, 30, 30);    // not finished !
+	SpriteEnemy->SetColorKey(255, 0, 255);
+}
+
+void Enemy::Quit()
+{
+	if(SpriteEnemy != NULL)
+	{
+		delete(SpriteEnemy);
+		SpriteEnemy = NULL;
+	}
+}
+
+void Enemy::Reset()
+{
+	// not finished
+	//
+
+	// startposition
+	xPos = 300; // rand() % 770;
+	yPos = 100; // rand() % 570;
+
+	cout << xPos << endl;
+	cout << yPos << endl;
+
+	animPhase = 0.0;     // not finished !
+}
+
+void Enemy::Render()
+{
+	// set position and render sprite
+	SpriteEnemy->SetPos(xPos, yPos);
+	SpriteEnemy->Render(animPhase);
+}
+
+void Enemy::Update()
+{
+	ProcessMoving();
+	CheckPosition();
+}
+
+void Enemy::KI()
+{
+	// insert KI-logic here and handle ProcessMoving() and CheckPosition()
+}
+
+void Enemy::ProcessMoving()
+{
+}
+
+void Enemy::CheckPosition()
+{
+}
+
+float Enemy::getHP()
 {
     return hp;
 }
 
-void Enemy::setHP(int hp)
+float Enemy::getCurrentHP()
 {
-    this->hp = hp;
+	return currentHP;
 }
+
+void Enemy::setCurrentHP(float newhp)
+{
+	newhp = currentHP;
+}
+

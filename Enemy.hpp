@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include "Sprite.hpp"
 
 #ifndef ENEMY_H
 #define	ENEMY_H
@@ -17,12 +18,32 @@ class Enemy
         Enemy(const Enemy& orig);
         virtual ~Enemy();
         
-        int getHP();
-        
-        void setHP(int hp);
+		void	Init();
+		void	Quit();
+		void	Reset();
+		void	Render();
+		void	Update();
+		void	KI();
+
+        float	getHP();
+        float	getCurrentHP();
+
+        void	setCurrentHP(float newhp);
 
     private:
-        int             hp;
+		void				ProcessMoving();
+		void				CheckPosition();
+
+		float				xPos;
+		float				yPos;
+		float				animPhase;
+
+		float				currentHP;
+
+		CSprite				*SpriteEnemy;
+
+		static const float	hp;
+		static const long	exp_earn;
 
 };
 
