@@ -55,8 +55,11 @@ void Game::Run()
 		player->Update();
 		player->Render();
 
-		SpawnEnemys();
-		HandleEnemys();
+		// not finished!
+		//
+
+		// SpawnEnemys();
+		// HandleEnemys();
 
 		g_pFramework->Flip();
 	}
