@@ -30,6 +30,7 @@ class Game
 		void		CheckCollisions	();
  
 		Player		*player;             // Player-Instance
+		Enemy		*enemy[10];
 		CSprite		*SpriteBackground;   
 		bool		gameRun;             // Is the game still running?
 		float		spawnTimer;
