@@ -328,8 +328,7 @@ float Player::calcHP()
 
 float Player::calcDMG()
 {
-	dmg = str_dmg_factor * str;
-	dmg = dex_dmg_factor * dex;
+	dmg = (str_dmg_factor * str) + (dex_dmg_factor * dex);
 	return dmg;
 }
 

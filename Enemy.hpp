@@ -23,7 +23,6 @@ class Enemy
 		void	Reset();
 		void	Render();
 		void	Update();
-		void	KI();
 
         float	getHP();
         float	getCurrentHP();
@@ -33,6 +32,7 @@ class Enemy
     private:
 		void				ProcessMoving();
 		void				CheckPosition();
+		void				KI();
 
 		float				xPos;
 		float				yPos;

@@ -55,11 +55,24 @@ void Game::Run()
 		player->Update();
 		player->Render();
 
+		/*
+		spawnTimer += g_pTimer->GetElapsed();
+		if(spawnTimer >= 3.0)
+		{
+			Enemy enemy;
+			enemy.Init();
+			enemy.Reset();
+			enemy.Update();
+			enemy.Render();
+			spawnTimer = 0.0;
+		}
+		*/
+
 		// not finished!
 		//
 
-		// SpawnEnemys();
-		// HandleEnemys();
+	//	SpawnEnemys();
+	//	HandleEnemys();
 
 		g_pFramework->Flip();
 	}
@@ -129,7 +142,6 @@ void Game::HandleEnemys()
 	{
 		It->Render();
 		It->Update();
-		It->KI();
 	}
 }
 

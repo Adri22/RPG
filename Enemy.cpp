@@ -45,8 +45,8 @@ void Enemy::Reset()
 	//
 
 	// startposition
-	xPos = 300; // rand() % 770;
-	yPos = 100; // rand() % 570;
+	xPos = rand() % 770;
+	yPos = rand() % 570;
 
 	cout << xPos << endl;
 	cout << yPos << endl;
@@ -63,8 +63,7 @@ void Enemy::Render()
 
 void Enemy::Update()
 {
-	ProcessMoving();
-	CheckPosition();
+	KI();
 }
 
 void Enemy::KI()
