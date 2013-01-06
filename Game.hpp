@@ -33,7 +33,7 @@ class Game
 		CSprite		*SpriteBackground;   
 		bool		gameRun;             // Is the game still running?
 		float		spawnTimer;
-		list<Enemy>	EnemyList;		     // A list, full of enemys
+		list<Enemy*>	EnemyList;		     // A list, full of enemys
 };
 
 #endif	/* GAME_H */
