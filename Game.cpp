@@ -58,8 +58,8 @@ void Game::Run()
 		// not finished!
 		//
 
-	//	SpawnEnemys();
-	//	HandleEnemys();
+		SpawnEnemys();
+		HandleEnemys();
 
 		g_pFramework->Flip();
 	}
@@ -111,9 +111,9 @@ void Game::SpawnEnemys()
 
 	if(spawnTimer >= 1.0)
 	{
-		Enemy enemy;
-		enemy.Init();
-		enemy.Reset();
+		Enemy* enemy = new Enemy();  //Will cause a memory leak if not properly deleted in Game deconstructor
+		enemy->Init();
+		enemy->Reset();
 
 		EnemyList.push_back(enemy);
 
@@ -123,12 +123,12 @@ void Game::SpawnEnemys()
 
 void Game::HandleEnemys()
 {
-	list<Enemy>::iterator It;
+	list<Enemy*>::iterator It;
 
 	for(It = EnemyList.begin(); It != EnemyList.end(); ++It)
 	{
-		It->Render();
-		It->Update();
+		(*It)->Render();
+		(*It)->Update();
 	}
 }
 
