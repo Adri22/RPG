@@ -19,6 +19,9 @@ Game::Game(const Game& orig)
 
 Game::~Game() 
 {
+	list<Enemy*>::iterator It;
+	for(It = EnemyList.begin(); It != EnemyList.end(); ++It)
+		delete (*It);
 }
 
 void Game::Init()
@@ -54,9 +57,6 @@ void Game::Run()
 		// update and render player
 		player->Update();
 		player->Render();
-
-		// not finished!
-		//
 
 		SpawnEnemys();
 		HandleEnemys();
@@ -111,7 +111,7 @@ void Game::SpawnEnemys()
 
 	if(spawnTimer >= 1.0)
 	{
-		Enemy* enemy = new Enemy();  //Will cause a memory leak if not properly deleted in Game deconstructor
+		Enemy* enemy = new Enemy();
 		enemy->Init();
 		enemy->Reset();
 
