@@ -48,9 +48,6 @@ void Enemy::Reset()
 	xPos = rand() % 770;
 	yPos = rand() % 570;
 
-	cout << xPos << endl;
-	cout << yPos << endl;
-
 	animPhase = 0.0;     // not finished !
 }
 

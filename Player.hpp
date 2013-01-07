@@ -57,6 +57,7 @@ class Player
 
     private:
 		void				ProcessMoving();
+		void				Attacking();
 		void				CheckPosition();
 
 		float				calcHP();
@@ -65,6 +66,7 @@ class Player
 		float				calcHPreg();
 
         string				name;
+		bool				attack_processed;
 		float				xPos;
 		float				yPos;
 		float				animPhase;

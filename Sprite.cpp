@@ -75,8 +75,6 @@ void CSprite::SetColorKey(int R, int G, int B)
 //
 void CSprite::SetPos(float fXPos, float fYPos)
 {
-	cout << "setpos " << fXPos << " " << fYPos << endl;
-
 	// update rect
 	m_Rect.x = static_cast<int>(fXPos);
 	m_Rect.y = static_cast<int>(fYPos);

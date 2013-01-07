@@ -65,6 +65,8 @@ void Player::Reset()
 	yPos = 520.0;
 
 	animPhase = 0.0;     // not finished !
+
+	attack_processed = false;
 }
 
 void Player::Render()
@@ -77,6 +79,7 @@ void Player::Render()
 void Player::Update()
 {
 	ProcessMoving();
+	Attacking();
 	CheckPosition();
 }
 
@@ -186,6 +189,23 @@ void Player::ProcessMoving()
 	}
 	else
 		diagonal = false;
+}
+
+void Player::Attacking()
+{
+	if(g_pFramework->KeyDown(SDLK_SPACE) && attack_processed == false)
+	{
+		// not finished!
+		//
+
+		// insert attacking-stuff here
+
+		cout << "attack!" << endl;
+		attack_processed = true;
+	}
+
+	if(g_pFramework->KeyDown(SDLK_SPACE) == false)
+		attack_processed = false;
 }
 
 void Player::CheckPosition()
