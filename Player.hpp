@@ -13,6 +13,14 @@
 
 using namespace std;
 
+enum DIRECTIONS
+{
+    UP,
+    DOWN, 
+    LEFT, 
+    RIGHT
+};
+
 class Player
 {
     public:
@@ -54,6 +62,7 @@ class Player
 		void levelUp();
 		void chooseStatPoint();
 		void displayStats();
+		void getDirection();
 
     private:
 		void				ProcessMoving();
@@ -65,7 +74,6 @@ class Player
 		float				calcSpeed();
 		float				calcHPreg();
 
-        string				name;
 		bool				attack_processed;
 		float				xPos;
 		float				yPos;
@@ -81,8 +89,24 @@ class Player
         int					spirit;
 		int					level;
 		long				exp;
+		int					currentDirection;
+		bool				diagonal_moving;
 
+		string				name;
 		CSprite				*SpritePlayer;
+		CSprite				*attackbox_rect;
+
+		struct				hitbox
+		{
+			int width;
+			int height;
+		}					player;
+
+		struct				attackbox
+		{
+			int width;
+			int height;
+		}					player_atk_box;
 
 		static const int	maxLevel;
 		static const long	exp_base;

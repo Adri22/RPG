@@ -11,6 +11,11 @@
 Player::Player() 
 {
 	SpritePlayer = NULL;
+	attackbox_rect = NULL;
+	player.width = 30;
+	player.height = 30;
+	player_atk_box.width = 30;
+	player_atk_box.height = 15;
 	str = 5;
 	vita = 10;
 	dex = 5;
@@ -22,6 +27,7 @@ Player::Player()
 	speed = calcSpeed();
 	hpReg = calcHPreg();
 	currentHP = hp;
+	diagonal_moving = false;
 }
 
 Player::Player(const Player& orig) 
@@ -44,7 +50,6 @@ const float Player::spirit_hpReg_factor		= 0.3;
 void Player::Init()
 {
 	SpritePlayer = new CSprite;
-	// SpritePlayer->Load("Data/Test.bmp");
 	SpritePlayer->Load("Data/Test.bmp", 1, 30, 30);    // not finished !
 	SpritePlayer->SetColorKey(255, 0, 255);
 }
@@ -66,6 +71,8 @@ void Player::Reset()
 
 	animPhase = 0.0;     // not finished !
 
+	currentDirection = UP;
+
 	attack_processed = false;
 }
 
@@ -79,65 +86,75 @@ void Player::Render()
 void Player::Update()
 {
 	ProcessMoving();
+	getDirection();
 	Attacking();
 	CheckPosition();
 }
 
 void Player::ProcessMoving()
 {
-	bool diagonal = false;
-
 	// horizontal and vertical moving
 	// -----------------------------------
 	//
-	if(!diagonal)
-		if(g_pFramework->KeyDown(SDLK_LEFT))
-		{
-			// move player leftwards
-			//
+	if(g_pFramework->KeyDown(SDLK_LEFT))
+	{
+		currentDirection = LEFT;
+
+		// move player leftwards
+		//
+		if(!diagonal_moving)
 			xPos -= (50.0 * speed) * g_pTimer->GetElapsed();
 
-			// animate
-			//
-			// animPhase -= 20.0f * g_pTimer->GetElapsed();		// not finished !
-		}
-		else if(g_pFramework->KeyDown(SDLK_RIGHT))
-		{
-			// move player rightwards
-			//
+		// animate
+		//
+		// animPhase -= 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
+	else if(g_pFramework->KeyDown(SDLK_RIGHT))
+	{
+		currentDirection = RIGHT;
+
+		// move player rightwards
+		//
+		if(!diagonal_moving)
 			xPos += (50.0 * speed) * g_pTimer->GetElapsed();
 
-			// animate
-			//
-			// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-		}
-		else if(g_pFramework->KeyDown(SDLK_UP))
-		{
-			// move player up
-			//
+		// animate
+		//
+		// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
+	else if(g_pFramework->KeyDown(SDLK_UP))
+	{
+		currentDirection = UP;
+
+		// move player up
+		//
+		if(!diagonal_moving)
 			yPos -= (50.0 * speed) * g_pTimer->GetElapsed();
 
-			// animate
-			//
-			// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-		}
-		else if(g_pFramework->KeyDown(SDLK_DOWN))
-		{
-			// move player down
-			//
+		// animate
+		//
+		// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
+	else if(g_pFramework->KeyDown(SDLK_DOWN))
+	{
+		currentDirection = DOWN;
+
+		// move player down
+		//
+		if(!diagonal_moving)
 			yPos += (50.0 * speed) * g_pTimer->GetElapsed();
 
-			// animate
-			//
-			// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-		}
+		// animate
+		//
+		// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+	}
 	
 	// diagonal moving
 	// ------------------
 	//
 	if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_RIGHT))
 	{
-		diagonal = true;
+		diagonal_moving = true;
 
 		// move player down and right
 		//
@@ -150,7 +167,7 @@ void Player::ProcessMoving()
 	}
 	else if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_LEFT))
 	{
-		diagonal = true;
+		diagonal_moving = true;
 
 		// move player down and left
 		//
@@ -163,7 +180,7 @@ void Player::ProcessMoving()
 	}
 	else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_RIGHT))
 	{
-		diagonal = true;
+		diagonal_moving = true;
 
 		// move player up and right
 		//
@@ -176,7 +193,7 @@ void Player::ProcessMoving()
 	}
 	else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_LEFT))
 	{
-		diagonal = true;
+		diagonal_moving = true;
 
 		// move player up and left
 		//
@@ -188,7 +205,7 @@ void Player::ProcessMoving()
 	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
 	}
 	else
-		diagonal = false;
+		diagonal_moving = false;
 }
 
 void Player::Attacking()
@@ -462,6 +479,11 @@ void Player::chooseStatPoint()
 				break;
 		}
 	}while(!pointSet);
+}
+
+void Player::getDirection()
+{
+	cout << "direction: " << currentDirection << endl;
 }
 
 void Player::displayStats()
