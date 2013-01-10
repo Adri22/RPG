@@ -35,6 +35,8 @@ void Game::Init()
 	SpriteBackground->Load("Data/Background_Test.bmp");
 
 	spawnTimer = 0.0;
+	frameTimer = 0.0;
+	frameCount = 0;
 
 	// game starts
 	gameRun = true;
@@ -46,6 +48,8 @@ void Game::Run()
 	//
 	while(gameRun == true)
 	{
+		getFPS();
+
 		ProcessEvents ();
 
 		// update framework and delete buffer
@@ -81,6 +85,19 @@ void Game::Quit()
 	}
 }
 
+void Game::getFPS()
+{
+	frameCount++;
+	frameTimer += g_pTimer->GetElapsed();
+
+	if(frameTimer >= 1)
+	{
+		cout << "fps: " << frameCount << endl;
+		frameTimer = 0.0;
+		frameCount = 0;
+	}
+}
+
 void Game::ProcessEvents()
 {
 	SDL_Event Event;
@@ -109,7 +126,7 @@ void Game::SpawnEnemys()
 {
 	spawnTimer += g_pTimer->GetElapsed();
 
-	if(spawnTimer >= 1.0)
+	if(spawnTimer >= 0.01)
 	{
 		Enemy* enemy = new Enemy();
 		enemy->Init();
