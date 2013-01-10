@@ -50,7 +50,7 @@ const float Player::spirit_hpReg_factor		= 0.3;
 void Player::Init()
 {
 	SpritePlayer = new CSprite;
-	SpritePlayer->Load("Data/Test.bmp", 1, 30, 30);    // not finished !
+	SpritePlayer->Load("Data/Test.bmp", 1, player.width, player.height);    // not finished !
 	SpritePlayer->SetColorKey(255, 0, 255);
 }
 
