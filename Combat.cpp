@@ -7,30 +7,39 @@ Combat::~Combat() {}
 
 void Combat::PlayerAttack()
 {
-	// not finished !
+	// not finished
 	//
 
-	cout << "player_attack" << endl;
-
-	EnemyList = g_pGame->getEnemyList();
-
-	list<Enemy*>::iterator It;
-
 	int enemies = 0;
-	for(It = EnemyList.begin(); It != EnemyList.end(); ++It)
+	list<Enemy*>::iterator It;
+	eList = g_pGame->getEnemyList();
+
+	for(It = eList.begin(); It != eList.end(); ++It)
 	{
 		// test
+		// just trying to remove hp from all enemies by attacking
+		//
 		float hp = (*It)->getCurrentHP();
-		hp = hp - 51;
+		hp = hp - 51; // test-value --> 3 attacks should kill all enemies :D
 		(*It)->setCurrentHP(hp);
 		enemies++;
+
+		cout << "Enemies: " << enemies << endl;
+		cout << "current HP: " << (*It)->getCurrentHP() << endl;
 	}
 
-	g_pGame->setEnemyList(EnemyList);
-
-	cout << enemies << endl;
+	// return the list to original enemy-list
+	//
+	g_pGame->setEnemyList(eList);
 }
 
 void Combat::EnemyAttack()
 {
+}
+
+void Combat::CheckCollisions()
+{
+	// use hit- and attackboxes here to calc pixels which are same "hit" by attack and position of target
+	//
+
 }

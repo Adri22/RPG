@@ -32,6 +32,7 @@ int main(int argc, char** argv)
 	g_pGame->Init();
 	g_pGame->Run();
 	g_pGame->Quit();
+	g_pGame->Del();
 
 	g_pLogfile->Textout("Framework beenden ...", true);
 	g_pFramework->Quit();

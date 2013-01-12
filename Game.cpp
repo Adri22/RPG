@@ -9,8 +9,8 @@
 
 Game::Game() 
 {
-	player = NULL;
 	SpriteBackground = NULL;
+	dead_enemy = NULL;
 }
 
 Game::Game(const Game& orig) 
@@ -27,9 +27,8 @@ Game::~Game()
 void Game::Init()
 {
 	// initialize new player
-	player = new Player;
-	player->Init();
-	player->Reset();
+	g_pPlayer->Init();
+	g_pPlayer->Reset();
 
 	SpriteBackground = new CSprite;
 	SpriteBackground->Load("Data/Background_Test.bmp");
@@ -57,8 +56,8 @@ void Game::Run()
 		SpriteBackground->Render();
 
 		// update and render player
-		player->Update();
-		player->Render();
+		g_pPlayer->Update();
+		g_pPlayer->Render();
 
 		SpawnEnemys();
 		HandleEnemys();
@@ -69,12 +68,7 @@ void Game::Run()
 
 void Game::Quit()
 {
-	if(player != NULL)
-	{
-		player->Quit();
-		delete(player);
-		player = NULL;
-	}
+	g_pPlayer->Del();
 
 	if(SpriteBackground != NULL)
 	{
@@ -145,17 +139,20 @@ void Game::HandleEnemys()
 		(*It)->Render();
 		(*It)->Update();
 
-		// test :: not finished!
+		// test _ not finished!
 		// 
-		cout << (*It)->getCurrentHP() << endl;
+		// cout << (*It)->getCurrentHP() << endl;
 
+		// delete not working
+		// causes and game-crash
 		if((*It)->getCurrentHP() <= 0)
-			delete (*It);
+		{
+			(*It) = dead_enemy;
+			EnemyList.erase(It);
+			delete dead_enemy;
+			dead_enemy = NULL;
+		}
 	}
-}
-
-void Game::CheckCollisions()
-{
 }
 
 list<Enemy*> Game::getEnemyList()
@@ -163,7 +160,9 @@ list<Enemy*> Game::getEnemyList()
 	return EnemyList;
 }
 
-void Game::setEnemyList(list<Enemy*> elist)
+void Game::setEnemyList(list<Enemy*> eList)
 {
-	EnemyList = elist;
+	EnemyList = eList;
 }
+
+

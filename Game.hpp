@@ -26,22 +26,21 @@ class Game : public TSingleton<Game>
 		void Run	();
 		void Quit	();
 
-		list<Enemy*>	getEnemyList	();
-		void			setEnemyList	(list<Enemy*> elist);
+		void				setEnemyList(list<Enemy*> eList);
+		list<Enemy*>		getEnemyList();
 
     private:
 		void		getFPS			();
 		void		ProcessEvents   ();
 		void		SpawnEnemys		();
 		void		HandleEnemys	();
-		void		CheckCollisions	();
  
-		Player				*player;             // Player-Instance
 		CSprite				*SpriteBackground;   
 		bool				gameRun;             // Is the game still running?
 		int					frameCount;
 		float				frameTimer;
 		float				spawnTimer;
+		Enemy				*dead_enemy;
 		list<Enemy*>		EnemyList;		     // A list, full of enemys
 };
 

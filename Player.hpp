@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include "Singleton.hpp"
 #include "Sprite.hpp"
 #include "Combat.hpp"
 
@@ -13,6 +14,8 @@
 #define	PLAYER_H
 
 using namespace std;
+
+#define g_pPlayer Player::Get()
 
 enum DIRECTIONS
 {
@@ -22,7 +25,7 @@ enum DIRECTIONS
     RIGHT
 };
 
-class Player
+class Player : public TSingleton<Player>
 {
     public:
         Player();

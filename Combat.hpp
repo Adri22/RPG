@@ -18,12 +18,13 @@ class Combat : public TSingleton<Combat>
 		Combat();
 		virtual ~Combat();
 
-		void		setCombatElements	();
 		void		PlayerAttack		();
-		void		EnemyAttack		();
+		void		EnemyAttack			();
 
 	private:
-		list<Enemy*>		EnemyList;
+		void		CheckCollisions	();
+
+		list<Enemy*>	eList;
 };
 
 #endif
