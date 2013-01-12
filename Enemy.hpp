@@ -42,6 +42,12 @@ class Enemy
 
 		CSprite				*SpriteEnemy;
 
+		struct				hitbox
+		{
+			int width;
+			int height;
+		}					enemy;
+
 		static const float	hp;
 		static const long	exp_earn;
 

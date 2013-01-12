@@ -28,12 +28,10 @@ int main(int argc, char** argv)
 	}
 	else
 		g_pLogfile->Textout("Framework initialisiert", true);
-		
-	Game game;
-
-	game.Init();
-	game.Run();
-	game.Quit();
+	
+	g_pGame->Init();
+	g_pGame->Run();
+	g_pGame->Quit();
 
 	g_pLogfile->Textout("Framework beenden ...", true);
 	g_pFramework->Quit();

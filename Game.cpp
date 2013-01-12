@@ -48,8 +48,6 @@ void Game::Run()
 	//
 	while(gameRun == true)
 	{
-		getFPS();
-
 		ProcessEvents ();
 
 		// update framework and delete buffer
@@ -146,9 +144,26 @@ void Game::HandleEnemys()
 	{
 		(*It)->Render();
 		(*It)->Update();
+
+		// test :: not finished!
+		// 
+		cout << (*It)->getCurrentHP() << endl;
+
+		if((*It)->getCurrentHP() <= 0)
+			delete (*It);
 	}
 }
 
 void Game::CheckCollisions()
 {
+}
+
+list<Enemy*> Game::getEnemyList()
+{
+	return EnemyList;
+}
+
+void Game::setEnemyList(list<Enemy*> elist)
+{
+	EnemyList = elist;
 }

@@ -6,13 +6,16 @@
  */
 
 #include <list>
+#include "Singleton.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
 
 #ifndef GAME_H
 #define	GAME_H
 
-class Game 
+#define g_pGame Game::Get()
+
+class Game : public TSingleton<Game>
 {
     public:
         Game();
@@ -22,6 +25,9 @@ class Game
 		void Init	();
 		void Run	();
 		void Quit	();
+
+		list<Enemy*>	getEnemyList	();
+		void			setEnemyList	(list<Enemy*> elist);
 
     private:
 		void		getFPS			();

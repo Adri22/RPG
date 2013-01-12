@@ -11,9 +11,10 @@
 Player::Player() 
 {
 	SpritePlayer = NULL;
-	attackbox_rect = NULL;
 	player.width = 30;
 	player.height = 30;
+	player_atk_box.atkXpos = 0;
+	player_atk_box.atkYpos = 0;
 	player_atk_box.width = 30;
 	player_atk_box.height = 15;
 	str = 5;
@@ -86,9 +87,35 @@ void Player::Render()
 void Player::Update()
 {
 	ProcessMoving();
-	getDirection();
+	AtkBoxPositioning();
 	Attacking();
 	CheckPosition();
+}
+
+void Player::AtkBoxPositioning()
+{
+	int direction = getDirection();
+
+	switch(direction)
+	{
+		case UP:
+			player_atk_box.atkXpos = xPos;
+			player_atk_box.atkYpos = yPos + player_atk_box.height;
+			break;
+		case DOWN:
+			player_atk_box.atkXpos = xPos;
+			player_atk_box.atkYpos = yPos - player.height;
+			break;
+		case LEFT:
+			player_atk_box.atkXpos = xPos + player_atk_box.width;
+			player_atk_box.atkYpos = yPos;
+			break;
+		case RIGHT:
+			player_atk_box.atkXpos = xPos + player.width;
+			player_atk_box.atkYpos = yPos;
+			break;
+		default: break;
+	}
 }
 
 void Player::ProcessMoving()
@@ -212,12 +239,7 @@ void Player::Attacking()
 {
 	if(g_pFramework->KeyDown(SDLK_SPACE) && attack_processed == false)
 	{
-		// not finished!
-		//
-
-		// insert attacking-stuff here
-
-		cout << "attack!" << endl;
+		g_pCombat->PlayerAttack();
 		attack_processed = true;
 	}
 
@@ -300,6 +322,11 @@ int Player::getLevel()
 float Player::getCurrentHP()
 {
 	return currentHP;
+}
+
+int Player::getDirection()
+{
+	return currentDirection;
 }
 
 void Player::setName(string name)
@@ -479,11 +506,6 @@ void Player::chooseStatPoint()
 				break;
 		}
 	}while(!pointSet);
-}
-
-void Player::getDirection()
-{
-	cout << "direction: " << currentDirection << endl;
 }
 
 void Player::displayStats()

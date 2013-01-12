@@ -9,17 +9,17 @@ class CSprite
 		CSprite();
 		~CSprite();
 
-		void Load        (const string sFilename);
-		void Load        (	const string sFilename, 
-							int NumFrames,
-							int FrameWidth, 
-							int FrameHeight
-						 );
-		void SetColorKey (int R, int G, int B);
-		void SetPos      (float fXPos, float fYPos);
-		void Render      ();
-		void Render      (float fFrameNumber);
-		SDL_Rect GetRect () 
+		void Load			(const string sFilename);
+		void Load			(	const string sFilename, 
+								int NumFrames,
+								int FrameWidth, 
+								int FrameHeight
+							);
+		void SetColorKey	(int R, int G, int B);
+		void SetPos			(float fXPos, float fYPos);
+		void Render			();
+		void Render			(float fFrameNumber);
+		SDL_Rect GetRect	() 
 		{
 			return m_Rect;
 		}

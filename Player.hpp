@@ -7,6 +7,7 @@
 
 #include <string>
 #include "Sprite.hpp"
+#include "Combat.hpp"
 
 #ifndef PLAYER_H
 #define	PLAYER_H
@@ -45,6 +46,7 @@ class Player
         int		getSpirit();
         int		getLevel();
 		float	getCurrentHP();
+		int		getDirection();
 
         void setName(string name);
         void setHP(float hp);
@@ -62,12 +64,26 @@ class Player
 		void levelUp();
 		void chooseStatPoint();
 		void displayStats();
-		void getDirection();
+
+		struct				hitbox
+		{
+			int width;
+			int height;
+		}					player;
+
+		struct				attackbox
+		{
+			float	atkXpos;
+			float	atkYpos;
+			int		width;
+			int		height;
+		}					player_atk_box;
 
     private:
 		void				ProcessMoving();
 		void				Attacking();
 		void				CheckPosition();
+		void				AtkBoxPositioning();
 
 		float				calcHP();
 		float				calcDMG();
@@ -94,19 +110,6 @@ class Player
 
 		string				name;
 		CSprite				*SpritePlayer;
-		CSprite				*attackbox_rect;
-
-		struct				hitbox
-		{
-			int width;
-			int height;
-		}					player;
-
-		struct				attackbox
-		{
-			int width;
-			int height;
-		}					player_atk_box;
 
 		static const int	maxLevel;
 		static const long	exp_base;

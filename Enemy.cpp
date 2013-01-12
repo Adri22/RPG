@@ -9,7 +9,8 @@
 
 Enemy::Enemy() 
 {
-	currentHP = hp;
+	enemy.width = 30;
+	enemy.height = 30;
 }
 
 Enemy::Enemy(const Enemy& orig) 
@@ -26,7 +27,7 @@ const long  Enemy::exp_earn				= 5000;
 void Enemy::Init()
 {
 	SpriteEnemy = new CSprite;
-	SpriteEnemy->Load("Data/Placeholder_Enemy.bmp", 1, 30, 30);    // not finished !
+	SpriteEnemy->Load("Data/Placeholder_Enemy.bmp", 1, enemy.width, enemy.height);    // not finished !
 	SpriteEnemy->SetColorKey(255, 0, 255);
 }
 
@@ -47,6 +48,8 @@ void Enemy::Reset()
 	// startposition
 	xPos = rand() % 770;
 	yPos = rand() % 570;
+
+	currentHP = hp;
 
 	animPhase = 0.0;     // not finished !
 }
