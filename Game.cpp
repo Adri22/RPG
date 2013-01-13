@@ -144,13 +144,14 @@ void Game::HandleEnemys()
 		// cout << (*It)->getCurrentHP() << endl;
 
 		// delete not working
-		// causes and game-crash
+		// causes an game-crash
+		//
 		if((*It)->getCurrentHP() <= 0)
 		{
 			(*It) = dead_enemy;
 			EnemyList.erase(It);
-			delete dead_enemy;
-			dead_enemy = NULL;
+		//	delete dead_enemy;
+		//	dead_enemy = NULL;
 		}
 	}
 }
