@@ -35,8 +35,8 @@ void Combat::PlayerAttack()
 			(*It)->setHit(false);
 		}
 
-		cout << "Enemies: " << enemies << endl;
-		cout << "current HP: " << (*It)->getCurrentHP() << endl;
+		// cout << "Enemies: " << enemies << endl;
+		// cout << "current HP: " << (*It)->getCurrentHP() << endl;
 	}
 
 	// return the list to original enemy-list
@@ -71,13 +71,19 @@ void Combat::CheckCollisions(int whoisattacking)
 				list<float>::iterator It2;
 				for(It2 = Player_AtkBox_Positions.begin(); It2 != Player_AtkBox_Positions.end(); ++It2)
 				{
-					if(It1 == It2)
+					cout << "Player_AtkBox_Pos: " << *It2 << "   ---   ";
+					cout << "Enemy_HitBox_Pos: " << *It1 << endl;
+
+					if(*It1 == *It2)
 						collision = true;
 				}
 			}
 			
-			(*It)->setHit(true);
-			collision = false;
+			if(collision)
+			{
+				(*It)->setHit(true);
+				collision = false;
+			}
 		}
 
 	// enemy is attacking
