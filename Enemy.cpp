@@ -11,6 +11,7 @@ Enemy::Enemy()
 {
 	enemy.width = 30;
 	enemy.height = 30;
+	isHit = false;
 }
 
 Enemy::Enemy(const Enemy& orig) 
@@ -61,6 +62,20 @@ void Enemy::Render()
 	SpriteEnemy->Render(animPhase);
 }
 
+list<float> Enemy::getHitboxPositions()
+{
+	hitboxPositions.clear();
+
+	for(int x = 0; x <= enemy.width; x++)
+		for(int y = 0; y <= enemy.height; y++)
+		{
+			hitboxPositions.push_back(xPos + x);
+			hitboxPositions.push_back(yPos + y);
+		}
+
+	return hitboxPositions;
+}
+
 void Enemy::Update()
 {
 	KI();
@@ -89,8 +104,17 @@ float Enemy::getCurrentHP()
 	return currentHP;
 }
 
+bool Enemy::getHit()
+{
+	return isHit;
+}
+
 void Enemy::setCurrentHP(float newhp)
 {
 	newhp = currentHP;
 }
 
+void Enemy::setHit(bool hit)
+{
+	isHit = hit;
+}

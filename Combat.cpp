@@ -1,7 +1,10 @@
 #include "Combat.hpp"
 
 
-Combat::Combat() {}
+Combat::Combat()
+{
+	collision = false;
+}
 
 Combat::~Combat() {}
 
@@ -9,6 +12,8 @@ void Combat::PlayerAttack()
 {
 	// not finished
 	//
+
+	CheckCollisions(PLAYER);
 
 	int enemies = 0;
 	list<Enemy*>::iterator It;
@@ -24,6 +29,12 @@ void Combat::PlayerAttack()
 		(*It)->setCurrentHP(hp);
 		enemies++;
 
+		if((*It)->getHit())
+		{
+			cout << "enemy hit" << endl;
+			(*It)->setHit(false);
+		}
+
 		cout << "Enemies: " << enemies << endl;
 		cout << "current HP: " << (*It)->getCurrentHP() << endl;
 	}
@@ -37,9 +48,42 @@ void Combat::EnemyAttack()
 {
 }
 
-void Combat::CheckCollisions()
+void Combat::CheckCollisions(int whoisattacking)
 {
-	// use hit- and attackboxes here to calc pixels which are same "hit" by attack and position of target
-	//
+	collision = false;
 
+	// use hit- and attackboxes here to calc pixels which are same "hit" by attack and position of target
+	
+	list<Enemy*>::iterator It;
+	eList = g_pGame->getEnemyList();
+
+	// player is attacking
+	//
+	if(whoisattacking == PLAYER)
+		for(It = eList.begin(); It != eList.end(); ++It)
+		{
+			Enemy_HitBox_Positions = (*It)->getHitboxPositions();
+			Player_AtkBox_Positions = g_pPlayer->getAtkboxPositions();
+
+			list<float>::iterator It1;
+			for(It1 = Enemy_HitBox_Positions.begin(); It1 != Enemy_HitBox_Positions.end(); ++It1)
+			{
+				list<float>::iterator It2;
+				for(It2 = Player_AtkBox_Positions.begin(); It2 != Player_AtkBox_Positions.end(); ++It2)
+				{
+					if(It1 == It2)
+						collision = true;
+				}
+			}
+			
+			(*It)->setHit(true);
+			collision = false;
+		}
+
+	// enemy is attacking
+	//
+	if(whoisattacking == ENEMY)
+	{
+		// insert collision-checking by enemy-attacking here
+	}
 }

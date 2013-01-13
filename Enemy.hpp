@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include <list>
 #include "Sprite.hpp"
 
 #ifndef ENEMY_H
@@ -27,6 +28,11 @@ class Enemy
         float	getHP();
         float	getCurrentHP();
 
+		bool	getHit();
+		void	setHit(bool hit);
+
+		list<float>	getHitboxPositions();
+
         void	setCurrentHP(float newhp);
 
     private:
@@ -34,11 +40,14 @@ class Enemy
 		void				CheckPosition();
 		void				KI();
 
+		list<float>			hitboxPositions;
+
 		float				xPos;
 		float				yPos;
 		float				animPhase;
 
 		float				currentHP;
+		bool				isHit;
 
 		CSprite				*SpriteEnemy;
 

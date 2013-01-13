@@ -118,6 +118,34 @@ void Player::AtkBoxPositioning()
 	}
 }
 
+list<float> Player::getHitboxPositions()
+{
+	hitboxPositions.clear();
+
+	for(int x = 0; x <= player.width; x++)
+		for(int y = 0; y <= player.height; y++)
+		{
+			hitboxPositions.push_back(xPos + x);
+			hitboxPositions.push_back(yPos + y);
+		}
+
+	return hitboxPositions;
+}
+
+list<float>	Player::getAtkboxPositions()
+{
+	atkboxPositions.clear();
+
+	for(int x = 0; x <= player_atk_box.width; x++)
+		for(int y = 0; y <= player_atk_box.height; y++)
+		{
+			hitboxPositions.push_back(player_atk_box.atkXpos + x);
+			hitboxPositions.push_back(player_atk_box.atkXpos + y);
+		}
+
+	return atkboxPositions;
+}
+
 void Player::ProcessMoving()
 {
 	// horizontal and vertical moving

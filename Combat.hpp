@@ -12,6 +12,12 @@ using namespace std;
 
 #define g_pCombat Combat::Get()
 
+enum WHOISATTACKING
+{
+    PLAYER,
+    ENEMY
+};
+
 class Combat : public TSingleton<Combat>
 {
 	public:
@@ -22,9 +28,14 @@ class Combat : public TSingleton<Combat>
 		void		EnemyAttack			();
 
 	private:
-		void		CheckCollisions	();
+		void			CheckCollisions	(int whoisattacking);
 
+		bool			collision;
 		list<Enemy*>	eList;
+		list<float>		Player_HitBox_Positions;
+		list<float>		Player_AtkBox_Positions;
+		list<float>		Enemy_HitBox_Positions;
+		// list<float>		Enemy_AtkBox_Positions;
 };
 
 #endif
