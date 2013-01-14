@@ -118,7 +118,7 @@ void Game::SpawnEnemys()
 {
 	spawnTimer += g_pTimer->GetElapsed();
 
-	if(spawnTimer >= 60)
+	if(spawnTimer >= 10)
 	{
 		Enemy* enemy = new Enemy();
 		enemy->Init();

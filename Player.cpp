@@ -118,8 +118,10 @@ void Player::AtkBoxPositioning()
 	}
 }
 
-list<float> Player::getHitboxPositions()
+list<int> Player::getHitboxPositions()
 {
+	cout << "get hitboxes" << endl;
+
 	hitboxPositions.clear();
 
 	for(int x = 0; x <= player.width; x++)
@@ -132,15 +134,15 @@ list<float> Player::getHitboxPositions()
 	return hitboxPositions;
 }
 
-list<float>	Player::getAtkboxPositions()
+list<int> Player::getAtkboxPositions()
 {
 	atkboxPositions.clear();
 
 	for(int x = 0; x <= player_atk_box.width; x++)
 		for(int y = 0; y <= player_atk_box.height; y++)
 		{
-			hitboxPositions.push_back(player_atk_box.atkXpos + x);
-			hitboxPositions.push_back(player_atk_box.atkXpos + y);
+			atkboxPositions.push_back(player_atk_box.atkXpos + x);
+			atkboxPositions.push_back(player_atk_box.atkXpos + y);
 		}
 
 	return atkboxPositions;

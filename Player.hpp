@@ -69,8 +69,8 @@ class Player : public TSingleton<Player>
 		void chooseStatPoint();
 		void displayStats();
 
-		list<float>	getHitboxPositions();
-		list<float>	getAtkboxPositions();
+		list<int>	getHitboxPositions();
+		list<int>	getAtkboxPositions();
 
 		struct				hitbox
 		{
@@ -97,8 +97,8 @@ class Player : public TSingleton<Player>
 		float				calcSpeed();
 		float				calcHPreg();
 
-		list<float>			hitboxPositions;
-		list<float>			atkboxPositions;
+		list<int>			hitboxPositions;
+		list<int>			atkboxPositions;
 		bool				attack_processed;
 		float				xPos;
 		float				yPos;

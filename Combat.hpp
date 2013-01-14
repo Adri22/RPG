@@ -32,10 +32,10 @@ class Combat : public TSingleton<Combat>
 
 		bool			collision;
 		list<Enemy*>	eList;
-		list<float>		Player_HitBox_Positions;
-		list<float>		Player_AtkBox_Positions;
-		list<float>		Enemy_HitBox_Positions;
-		// list<float>		Enemy_AtkBox_Positions;
+		list<int>		Player_HitBox_Positions;
+		list<int>		Player_AtkBox_Positions;
+		list<int>		Enemy_HitBox_Positions;
+		// list<int>		Enemy_AtkBox_Positions;
 };
 
 #endif

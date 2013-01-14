@@ -18,7 +18,7 @@ void Combat::PlayerAttack()
 	int enemies = 0;
 	list<Enemy*>::iterator It;
 	eList = g_pGame->getEnemyList();
-
+	
 	for(It = eList.begin(); It != eList.end(); ++It)
 	{
 		// test
@@ -41,7 +41,7 @@ void Combat::PlayerAttack()
 
 	// return the list to original enemy-list
 	//
-	g_pGame->setEnemyList(eList);
+	// g_pGame->setEnemyList(eList);
 }
 
 void Combat::EnemyAttack()
@@ -60,19 +60,21 @@ void Combat::CheckCollisions(int whoisattacking)
 	// player is attacking
 	//
 	if(whoisattacking == PLAYER)
+	{
+		cout << "player attacks" << endl;
 		for(It = eList.begin(); It != eList.end(); ++It)
 		{
 			Enemy_HitBox_Positions = (*It)->getHitboxPositions();
 			Player_AtkBox_Positions = g_pPlayer->getAtkboxPositions();
 
-			list<float>::iterator It1;
+			list<int>::iterator It1;
 			for(It1 = Enemy_HitBox_Positions.begin(); It1 != Enemy_HitBox_Positions.end(); ++It1)
 			{
-				list<float>::iterator It2;
+				list<int>::iterator It2;
 				for(It2 = Player_AtkBox_Positions.begin(); It2 != Player_AtkBox_Positions.end(); ++It2)
 				{
-					cout << "Player_AtkBox_Pos: " << *It2 << "   ---   ";
-					cout << "Enemy_HitBox_Pos: " << *It1 << endl;
+					// cout << "Player_AtkBox_Pos: " << *It2 << "   ---   ";
+					// cout << "Enemy_HitBox_Pos: " << *It1 << endl;
 
 					if(*It1 == *It2)
 						collision = true;
@@ -85,6 +87,7 @@ void Combat::CheckCollisions(int whoisattacking)
 				collision = false;
 			}
 		}
+	}
 
 	// enemy is attacking
 	//

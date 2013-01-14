@@ -31,7 +31,7 @@ class Enemy
 		bool	getHit();
 		void	setHit(bool hit);
 
-		list<float>	getHitboxPositions();
+		list<int>	getHitboxPositions();
 
         void	setCurrentHP(float newhp);
 
@@ -40,7 +40,7 @@ class Enemy
 		void				CheckPosition();
 		void				KI();
 
-		list<float>			hitboxPositions;
+		list<int>			hitboxPositions;
 
 		float				xPos;
 		float				yPos;

@@ -62,7 +62,7 @@ void Enemy::Render()
 	SpriteEnemy->Render(animPhase);
 }
 
-list<float> Enemy::getHitboxPositions()
+list<int> Enemy::getHitboxPositions()
 {
 	hitboxPositions.clear();
 
