@@ -31,6 +31,8 @@ void Combat::PlayerAttack()
 
 		if((*It)->getHit())
 		{
+			// enemy should damaged here
+			//
 			cout << "enemy hit" << endl;
 			(*It)->setHit(false);
 		}
@@ -67,20 +69,8 @@ void Combat::CheckCollisions(int whoisattacking)
 			Enemy_HitBox_Positions = (*It)->getHitboxPositions();
 			Player_AtkBox_Positions = g_pPlayer->getAtkboxPositions();
 
-			list<int>::iterator It1;
-			for(It1 = Enemy_HitBox_Positions.begin(); It1 != Enemy_HitBox_Positions.end(); ++It1)
-			{
-				list<int>::iterator It2;
-				for(It2 = Player_AtkBox_Positions.begin(); It2 != Player_AtkBox_Positions.end(); ++It2)
-				{
-					// cout << "Player_AtkBox_Pos: " << *It2 << "   ---   ";
-					// cout << "Enemy_HitBox_Pos: " << *It1 << endl;
+			// insert reworked collision-algorithm here
 
-					if(*It1 == *It2)
-						collision = true;
-				}
-			}
-			
 			if(collision)
 			{
 				(*It)->setHit(true);

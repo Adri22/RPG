@@ -62,16 +62,16 @@ void Enemy::Render()
 	SpriteEnemy->Render(animPhase);
 }
 
-list<int> Enemy::getHitboxPositions()
+vector<int> Enemy::getHitboxPositions()
 {
-	hitboxPositions.clear();
+	int size = 4;
+	vector<int> hitboxPositions;
 
-	for(int x = 0; x <= enemy.width; x++)
-		for(int y = 0; y <= enemy.height; y++)
-		{
-			hitboxPositions.push_back(xPos + x);
-			hitboxPositions.push_back(yPos + y);
-		}
+	// enemy.width;
+	// enemy.height;
+
+	for(int i = 0; i <= size; i++){
+	}
 
 	return hitboxPositions;
 }

@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include <vector>
 #include <list>
 #include "Singleton.hpp"
 #include "Sprite.hpp"
@@ -69,8 +70,8 @@ class Player : public TSingleton<Player>
 		void chooseStatPoint();
 		void displayStats();
 
-		list<int>	getHitboxPositions();
-		list<int>	getAtkboxPositions();
+		vector<int>	getHitboxPositions();
+		vector<int>	getAtkboxPositions();
 
 		struct				hitbox
 		{
@@ -97,8 +98,6 @@ class Player : public TSingleton<Player>
 		float				calcSpeed();
 		float				calcHPreg();
 
-		list<int>			hitboxPositions;
-		list<int>			atkboxPositions;
 		bool				attack_processed;
 		float				xPos;
 		float				yPos;

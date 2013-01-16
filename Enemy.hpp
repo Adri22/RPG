@@ -6,6 +6,7 @@
  */
 
 #include <string>
+#include <vector>
 #include <list>
 #include "Sprite.hpp"
 
@@ -31,16 +32,14 @@ class Enemy
 		bool	getHit();
 		void	setHit(bool hit);
 
-		list<int>	getHitboxPositions();
+		void	setCurrentHP(float newhp);
 
-        void	setCurrentHP(float newhp);
+		vector<int>		getHitboxPositions();
 
     private:
 		void				ProcessMoving();
 		void				CheckPosition();
 		void				KI();
-
-		list<int>			hitboxPositions;
 
 		float				xPos;
 		float				yPos;
