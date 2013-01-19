@@ -158,7 +158,7 @@ void Player::ProcessMoving()
 		// move player leftwards
 		//
 		if(!diagonal_moving)
-			xPos -= (50.0 * speed) * g_pTimer->GetElapsed();
+			xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -171,7 +171,7 @@ void Player::ProcessMoving()
 		// move player rightwards
 		//
 		if(!diagonal_moving)
-			xPos += (50.0 * speed) * g_pTimer->GetElapsed();
+			xPos += (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -184,7 +184,7 @@ void Player::ProcessMoving()
 		// move player up
 		//
 		if(!diagonal_moving)
-			yPos -= (50.0 * speed) * g_pTimer->GetElapsed();
+			yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -197,7 +197,7 @@ void Player::ProcessMoving()
 		// move player down
 		//
 		if(!diagonal_moving)
-			yPos += (50.0 * speed) * g_pTimer->GetElapsed();
+			yPos += (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -213,8 +213,8 @@ void Player::ProcessMoving()
 
 		// move player down and right
 		//
-		xPos += (25.0 * speed) * g_pTimer->GetElapsed();
-		yPos += (25.0 * speed) * g_pTimer->GetElapsed();
+		xPos += (100.0 * speed) * g_pTimer->GetElapsed();
+		yPos += (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -226,8 +226,8 @@ void Player::ProcessMoving()
 
 		// move player down and left
 		//
-		xPos -= (25.0 * speed) * g_pTimer->GetElapsed();
-		yPos += (25.0 * speed) * g_pTimer->GetElapsed();
+		xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
+		yPos += (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -239,8 +239,8 @@ void Player::ProcessMoving()
 
 		// move player up and right
 		//
-		xPos += (25.0 * speed) * g_pTimer->GetElapsed();
-		yPos -= (25.0 * speed) * g_pTimer->GetElapsed();
+		xPos += (100.0 * speed) * g_pTimer->GetElapsed();
+		yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
@@ -252,8 +252,8 @@ void Player::ProcessMoving()
 
 		// move player up and left
 		//
-		xPos -= (25.0 * speed) * g_pTimer->GetElapsed();
-		yPos -= (25.0 * speed) * g_pTimer->GetElapsed();
+		xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
+		yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 
 		// animate
 		//
