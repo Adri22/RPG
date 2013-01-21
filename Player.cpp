@@ -118,34 +118,6 @@ void Player::AtkBoxPositioning()
 	}
 }
 
-vector<int> Player::getHitboxPositions()
-{
-	int size = 4;
-	vector<int> hitboxPositions;
-
-	// player.width;
-	// player.height;
-
-	for(int i = 0; i <= size; i++){
-	}
-
-	return hitboxPositions;
-}
-
-vector<int> Player::getAtkboxPositions()
-{
-	int size = 4;
-	vector<int> atkboxPositions;
-
-	// player_atk_box.width;
-	// player_atk_box.height;
-
-	for(int i = 0; i <= size; i++){
-	}
-
-	return atkboxPositions;
-}
-
 void Player::ProcessMoving()
 {
 	// horizontal and vertical moving

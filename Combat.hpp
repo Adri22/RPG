@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <list>
-#include <vector>
 #include "Singleton.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
@@ -33,10 +32,6 @@ class Combat : public TSingleton<Combat>
 
 		bool			collision;
 		list<Enemy*>	eList;
-		vector<int>		Player_HitBox_Positions;
-		vector<int>		Player_AtkBox_Positions;
-		vector<int>		Enemy_HitBox_Positions;
-		// vector<int>			Enemy_AtkBox_Positions;
 };
 
 #endif

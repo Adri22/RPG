@@ -12,6 +12,7 @@ Enemy::Enemy()
 	enemy.width = 30;
 	enemy.height = 30;
 	isHit = false;
+	currentHP = hp;
 }
 
 Enemy::Enemy(const Enemy& orig) 
@@ -50,8 +51,6 @@ void Enemy::Reset()
 	xPos = rand() % 770;
 	yPos = rand() % 570;
 
-	currentHP = hp;
-
 	animPhase = 0.0;     // not finished !
 }
 
@@ -60,20 +59,6 @@ void Enemy::Render()
 	// set position and render sprite
 	SpriteEnemy->SetPos(xPos, yPos);
 	SpriteEnemy->Render(animPhase);
-}
-
-vector<int> Enemy::getHitboxPositions()
-{
-	int size = 4;
-	vector<int> hitboxPositions;
-
-	// enemy.width;
-	// enemy.height;
-
-	for(int i = 0; i <= size; i++){
-	}
-
-	return hitboxPositions;
 }
 
 void Enemy::Update()
@@ -111,7 +96,7 @@ bool Enemy::getHit()
 
 void Enemy::setCurrentHP(float newhp)
 {
-	newhp = currentHP;
+	currentHP = newhp;
 }
 
 void Enemy::setHit(bool hit)

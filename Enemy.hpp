@@ -6,7 +6,6 @@
  */
 
 #include <string>
-#include <vector>
 #include <list>
 #include "Sprite.hpp"
 
@@ -33,8 +32,6 @@ class Enemy
 		void	setHit(bool hit);
 
 		void	setCurrentHP(float newhp);
-
-		vector<int>		getHitboxPositions();
 
     private:
 		void				ProcessMoving();

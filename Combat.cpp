@@ -10,40 +10,27 @@ Combat::~Combat() {}
 
 void Combat::PlayerAttack()
 {
-	// not finished
-	//
-
 	CheckCollisions(PLAYER);
 
-	int enemies = 0;
 	list<Enemy*>::iterator It;
 	eList = g_pGame->getEnemyList();
 	
 	for(It = eList.begin(); It != eList.end(); ++It)
 	{
-		// test
-		// just trying to remove hp from all enemies by attacking
-		//
-		float hp = (*It)->getCurrentHP();
-		hp = hp - 51; // test-value --> 3 attacks should kill all enemies :D
-		(*It)->setCurrentHP(hp);
-		enemies++;
-
 		if((*It)->getHit())
 		{
-			// enemy should damaged here
-			//
-			cout << "enemy hit" << endl;
+			float hp = (*It)->getCurrentHP();
+			hp-=g_pPlayer->getDMG();
+			(*It)->setCurrentHP(hp);
 			(*It)->setHit(false);
 		}
 
-		// cout << "Enemies: " << enemies << endl;
-		// cout << "current HP: " << (*It)->getCurrentHP() << endl;
+		cout << "Enemy-HP: " << (*It)->getCurrentHP() << endl;
 	}
 
 	// return the list to original enemy-list
 	//
-	// g_pGame->setEnemyList(eList);
+	g_pGame->setEnemyList(eList);
 }
 
 void Combat::EnemyAttack()
@@ -66,10 +53,13 @@ void Combat::CheckCollisions(int whoisattacking)
 		cout << "player attacks" << endl;
 		for(It = eList.begin(); It != eList.end(); ++It)
 		{
-			Enemy_HitBox_Positions = (*It)->getHitboxPositions();
-			Player_AtkBox_Positions = g_pPlayer->getAtkboxPositions();
+			// (*It)->getHitbox();
+			// g_pPlayer->getAtkbox();
 
 			// insert reworked collision-algorithm here
+
+			// test
+			collision = true;
 
 			if(collision)
 			{

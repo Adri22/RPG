@@ -6,7 +6,6 @@
  */
 
 #include <string>
-#include <vector>
 #include <list>
 #include "Singleton.hpp"
 #include "Sprite.hpp"
@@ -70,13 +69,10 @@ class Player : public TSingleton<Player>
 		void chooseStatPoint();
 		void displayStats();
 
-		vector<int>	getHitboxPositions();
-		vector<int>	getAtkboxPositions();
-
 		struct				hitbox
 		{
-			int width;
-			int height;
+			int		width;
+			int		height;
 		}					player;
 
 		struct				attackbox
