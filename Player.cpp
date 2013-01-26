@@ -95,6 +95,10 @@ void Player::Update()
 
 void Player::updateHitbox()
 {
+	player.left		= xPos;
+	player.right	= xPos + player.width;
+	player.top		= yPos;
+	player.bottom	= yPos + player.height;
 }
 
 void Player::AtkBoxPositioning()

@@ -72,6 +72,10 @@ void Enemy::Update()
 
 void Enemy::updateHitbox()
 {
+	enemy.left		= xPos;
+	enemy.right		= xPos + enemy.width;
+	enemy.top		= yPos;
+	enemy.bottom	= yPos + enemy.height;
 }
 
 void Enemy::KI()
