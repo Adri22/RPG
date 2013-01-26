@@ -88,8 +88,13 @@ void Player::Update()
 {
 	ProcessMoving();
 	AtkBoxPositioning();
+	updateHitbox();
 	Attacking();
 	CheckPosition();
+}
+
+void Player::updateHitbox()
+{
 }
 
 void Player::AtkBoxPositioning()
@@ -99,20 +104,36 @@ void Player::AtkBoxPositioning()
 	switch(direction)
 	{
 		case UP:
-			player_atk_box.atkXpos = xPos;
-			player_atk_box.atkYpos = yPos + player_atk_box.height;
+			player_atk_box.atkXpos			=	xPos;
+			player_atk_box.atkYpos			=	yPos - player_atk_box.height;
+			player_atk_box.top				=	player_atk_box.atkYpos;
+			player_atk_box.bottom			=	(player_atk_box.atkYpos + player_atk_box.height);
+			player_atk_box.right			=	(player_atk_box.atkXpos + player_atk_box.width);
+			player_atk_box.left				=	player_atk_box.atkXpos;
 			break;
 		case DOWN:
-			player_atk_box.atkXpos = xPos;
-			player_atk_box.atkYpos = yPos - player.height;
+			player_atk_box.atkXpos			=	xPos;
+			player_atk_box.atkYpos			=	yPos + player.height;
+			player_atk_box.top				=	player_atk_box.atkYpos;
+			player_atk_box.bottom			=	(player_atk_box.atkYpos + player_atk_box.height);
+			player_atk_box.right			=	(player_atk_box.atkXpos + player_atk_box.width);
+			player_atk_box.left				=	player_atk_box.atkXpos;
 			break;
 		case LEFT:
-			player_atk_box.atkXpos = xPos + player_atk_box.width;
-			player_atk_box.atkYpos = yPos;
+			player_atk_box.atkXpos			=	xPos - player_atk_box.height;
+			player_atk_box.atkYpos			=	yPos;
+			player_atk_box.top				=	player_atk_box.atkYpos;
+			player_atk_box.bottom			=	(player_atk_box.atkYpos + player_atk_box.width);
+			player_atk_box.right			=	(player_atk_box.atkXpos + player_atk_box.height);
+			player_atk_box.left				=	player_atk_box.atkXpos;
 			break;
 		case RIGHT:
-			player_atk_box.atkXpos = xPos + player.width;
-			player_atk_box.atkYpos = yPos;
+			player_atk_box.atkXpos			=	xPos + player.width;
+			player_atk_box.atkYpos			=	yPos;
+			player_atk_box.top				=	player_atk_box.atkYpos;
+			player_atk_box.bottom			=	(player_atk_box.atkYpos + player_atk_box.width);
+			player_atk_box.right			=	(player_atk_box.atkXpos + player_atk_box.height);
+			player_atk_box.left				=	player_atk_box.atkXpos;
 			break;
 		default: break;
 	}

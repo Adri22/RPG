@@ -73,6 +73,10 @@ class Player : public TSingleton<Player>
 		{
 			int		width;
 			int		height;
+			int		left;
+			int		right;
+			int		top;
+			int		bottom;
 		}					player;
 
 		struct				attackbox
@@ -81,6 +85,10 @@ class Player : public TSingleton<Player>
 			float	atkYpos;
 			int		width;
 			int		height;
+			int		left;
+			int		right;
+			int		top;
+			int		bottom;
 		}					player_atk_box;
 
     private:
@@ -88,6 +96,7 @@ class Player : public TSingleton<Player>
 		void				Attacking();
 		void				CheckPosition();
 		void				AtkBoxPositioning();
+		void				updateHitbox();
 
 		float				calcHP();
 		float				calcDMG();

@@ -25,7 +25,7 @@ void Combat::PlayerAttack()
 			(*It)->setHit(false);
 		}
 
-		cout << "Enemy-HP: " << (*It)->getCurrentHP() << endl;
+		// cout << "Enemy-HP: " << (*It)->getCurrentHP() << endl;
 	}
 
 	// return the list to original enemy-list
@@ -50,12 +50,11 @@ void Combat::CheckCollisions(int whoisattacking)
 	//
 	if(whoisattacking == PLAYER)
 	{
-		cout << "player attacks" << endl;
 		for(It = eList.begin(); It != eList.end(); ++It)
 		{
-			// (*It)->getHitbox();
-			// g_pPlayer->getAtkbox();
-
+			// g_pPlayer->player_atk_box;
+			// (*It)->enemy;
+			
 			// insert reworked collision-algorithm here
 
 			// test

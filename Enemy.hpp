@@ -33,10 +33,34 @@ class Enemy
 
 		void	setCurrentHP(float newhp);
 
+		struct				hitbox
+		{
+			int		width;
+			int		height;
+			int		left;
+			int		right;
+			int		top;
+			int		bottom;
+		}					enemy;
+
+		struct				attackbox
+		{
+			float	atkXpos;
+			float	atkYpos;
+			int		width;
+			int		height;
+			int		left;
+			int		right;
+			int		top;
+			int		bottom;
+		}					enemy_atk_box;
+
     private:
 		void				ProcessMoving();
 		void				CheckPosition();
 		void				KI();
+		void				AtkBoxPositioning();
+		void				updateHitbox();
 
 		float				xPos;
 		float				yPos;
@@ -46,12 +70,6 @@ class Enemy
 		bool				isHit;
 
 		CSprite				*SpriteEnemy;
-
-		struct				hitbox
-		{
-			int width;
-			int height;
-		}					enemy;
 
 		static const float	hp;
 		static const long	exp_earn;

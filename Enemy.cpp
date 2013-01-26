@@ -64,6 +64,14 @@ void Enemy::Render()
 void Enemy::Update()
 {
 	KI();
+	updateHitbox();
+	// AtkBoxPositioning();
+}
+
+// insert AtkBoxPositioning() here
+
+void Enemy::updateHitbox()
+{
 }
 
 void Enemy::KI()
