@@ -146,12 +146,10 @@ void Game::HandleEnemys()
 		// delete not working
 		// causes an game-crash
 		//
-		if((*It)->getCurrentHP() <= 0)
+		if((*It)->getCurrentHP() <= 0 && (*It)->isAlive())
 		{
 			(*It)->kill();
-
-			if((*It)->isAlive())
-				g_pPlayer->setEXP((*It)->getEXP());
+			g_pPlayer->setEXP((*It)->getEXP());
 
 		//	(*It) = dead_enemy;
 		//	EnemyList.erase(It);

@@ -309,6 +309,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Data\hero_sprite_test.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\Data\Placeholder_Enemy.bmp"
 				>
 			</File>
