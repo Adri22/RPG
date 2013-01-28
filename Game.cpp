@@ -148,6 +148,11 @@ void Game::HandleEnemys()
 		//
 		if((*It)->getCurrentHP() <= 0)
 		{
+			(*It)->kill();
+
+			if((*It)->isAlive())
+				g_pPlayer->setEXP((*It)->getEXP());
+
 		//	(*It) = dead_enemy;
 		//	EnemyList.erase(It);
 		//	delete dead_enemy;

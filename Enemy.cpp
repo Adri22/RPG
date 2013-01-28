@@ -12,6 +12,7 @@ Enemy::Enemy()
 	enemy.width = 30;
 	enemy.height = 30;
 	isHit = false;
+	alive = true;
 	currentHP = hp;
 }
 
@@ -24,7 +25,7 @@ Enemy::~Enemy()
 }
 
 const float	Enemy::hp					= 150;
-const long  Enemy::exp_earn				= 5000;
+const long  Enemy::exp_earn				= 20000;
 
 void Enemy::Init()
 {
@@ -106,6 +107,11 @@ bool Enemy::getHit()
 	return isHit;
 }
 
+long Enemy::getEXP()
+{
+	return exp_earn;
+}
+
 void Enemy::setCurrentHP(float newhp)
 {
 	currentHP = newhp;
@@ -114,4 +120,14 @@ void Enemy::setCurrentHP(float newhp)
 void Enemy::setHit(bool hit)
 {
 	isHit = hit;
+}
+
+void Enemy::kill()
+{
+	alive = false;
+}
+
+bool Enemy::isAlive()
+{
+	return alive;
 }

@@ -33,6 +33,11 @@ class Enemy
 
 		void	setCurrentHP(float newhp);
 
+		long	getEXP();
+
+		void	kill();
+		bool	isAlive();
+
 		struct				hitbox
 		{
 			int		width;
@@ -68,6 +73,7 @@ class Enemy
 
 		float				currentHP;
 		bool				isHit;
+		bool				alive;
 
 		CSprite				*SpriteEnemy;
 
