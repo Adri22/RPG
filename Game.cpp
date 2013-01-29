@@ -10,7 +10,6 @@
 Game::Game() 
 {
 	SpriteBackground = NULL;
-	dead_enemy = NULL;
 }
 
 Game::Game(const Game& orig) 
@@ -19,9 +18,6 @@ Game::Game(const Game& orig)
 
 Game::~Game() 
 {
-	list<Enemy*>::iterator It;
-	for(It = EnemyList.begin(); It != EnemyList.end(); ++It)
-		delete (*It);
 }
 
 void Game::Init()
@@ -75,6 +71,10 @@ void Game::Quit()
 		delete(SpriteBackground);
 		SpriteBackground = NULL;
 	}
+
+	list<Enemy*>::iterator It;
+	for(It = EnemyList.begin(); It != EnemyList.end(); ++It)
+		delete (*It);
 }
 
 void Game::getFPS()
@@ -139,22 +139,12 @@ void Game::HandleEnemys()
 		(*It)->Render();
 		(*It)->Update();
 
-		// test _ not finished!
-		// 
-		// cout << (*It)->getCurrentHP() << endl;
-
-		// delete not working
-		// causes an game-crash
-		//
 		if((*It)->getCurrentHP() <= 0 && (*It)->isAlive())
 		{
 			(*It)->kill();
 			g_pPlayer->setEXP((*It)->getEXP());
-
-		//	(*It) = dead_enemy;
-		//	EnemyList.erase(It);
-		//	delete dead_enemy;
-		//	dead_enemy = NULL;
+			EnemyList.erase(It);
+			break;
 		}
 	}
 }

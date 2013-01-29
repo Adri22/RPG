@@ -40,7 +40,6 @@ class Game : public TSingleton<Game>
 		int					frameCount;
 		float				frameTimer;
 		float				spawnTimer;
-		Enemy				*dead_enemy;
 		list<Enemy*>		EnemyList;		     // A list, full of enemys
 };
 
