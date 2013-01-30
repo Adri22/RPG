@@ -143,6 +143,7 @@ void Game::HandleEnemys()
 		{
 			(*It)->kill();
 			g_pPlayer->setEXP((*It)->getEXP());
+			delete (*It);
 			EnemyList.erase(It);
 			break;
 		}
