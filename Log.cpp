@@ -7,6 +7,8 @@
 
 #include "Log.hpp"
 
+#include <cstdarg>
+
 Log::Log(){}
 
 Log::~Log()

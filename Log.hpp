@@ -5,7 +5,6 @@
  * Created on 17. Dezember 2012, 13:55
  */
 
-#include <windows.h>
 #include <stdio.h>
 #include "Singleton.hpp"
 
