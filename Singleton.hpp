@@ -32,7 +32,7 @@ class TSingleton
       if(m_pSingleton)
       {
         delete(m_pSingleton);  
-        m_pSingleton = NULL; 
+        m_pSingleton = 0; 
       }
     }
 };
