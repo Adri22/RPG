@@ -7,7 +7,6 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <windows.h>
 #include "Log.hpp"
 #include "SDL.h"
 #include "Framework.hpp"
