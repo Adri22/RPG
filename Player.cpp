@@ -51,7 +51,7 @@ const float Player::spirit_hpReg_factor		= 0.3;
 void Player::Init()
 {
 	SpritePlayer = new CSprite;
-	SpritePlayer->Load("Data/Test.bmp", 1, player.width, player.height);    // not finished !
+	SpritePlayer->Load("Data/player_sprite.bmp", 16, player.width, player.height);    // not finished !
 	SpritePlayer->SetColorKey(255, 0, 255);
 }
 
@@ -70,7 +70,9 @@ void Player::Reset()
 	xPos = 376.0;
 	yPos = 520.0;
 
-	animPhase = 0.0;     // not finished !
+	animPhase = 0.0;
+	temp_animPhase = 0.0;
+	animTimer = 0.0;
 
 	currentDirection = UP;
 
@@ -148,8 +150,7 @@ void Player::ProcessMoving()
 	// horizontal and vertical moving
 	// -----------------------------------
 	//
-	if(g_pFramework->KeyDown(SDLK_LEFT))
-	{
+	if(g_pFramework->KeyDown(SDLK_LEFT)){
 		currentDirection = LEFT;
 
 		// move player leftwards
@@ -159,10 +160,19 @@ void Player::ProcessMoving()
 
 		// animate
 		//
-		// animPhase -= 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_RIGHT))
-	{
+		animTimer += g_pTimer->GetElapsed();
+
+		if(animTimer >= 0.2){
+			if(animPhase != 4 && animPhase != 5)
+				animPhase = 4;
+			else if(animPhase == 4)
+				animPhase = 5;
+			else if(animPhase == 5)
+				animPhase = 4;
+			animTimer = 0.0;
+			temp_animPhase = animPhase;
+		}
+	} else if(g_pFramework->KeyDown(SDLK_RIGHT)){
 		currentDirection = RIGHT;
 
 		// move player rightwards
@@ -172,10 +182,19 @@ void Player::ProcessMoving()
 
 		// animate
 		//
-		// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_UP))
-	{
+		animTimer += g_pTimer->GetElapsed();
+
+		if(animTimer >= 0.2){
+			if(animPhase != 8 && animPhase != 9)
+				animPhase = 8;
+			else if(animPhase == 8)
+				animPhase = 9;
+			else if(animPhase == 9)
+				animPhase = 8;
+			animTimer = 0.0;
+			temp_animPhase = animPhase;
+		}
+	} else if(g_pFramework->KeyDown(SDLK_UP)){
 		currentDirection = UP;
 
 		// move player up
@@ -185,10 +204,19 @@ void Player::ProcessMoving()
 
 		// animate
 		//
-		// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_DOWN))
-	{
+		animTimer += g_pTimer->GetElapsed();
+
+		if(animTimer >= 0.2){
+			if(animPhase != 13 && animPhase != 14)
+				animPhase = 13;
+			else if(animPhase == 13)
+				animPhase = 14;
+			else if(animPhase == 14)
+				animPhase = 13;
+			animTimer = 0.0;
+			temp_animPhase = animPhase;
+		}
+	} else if(g_pFramework->KeyDown(SDLK_DOWN)){
 		currentDirection = DOWN;
 
 		// move player down
@@ -198,78 +226,72 @@ void Player::ProcessMoving()
 
 		// animate
 		//
-		// animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
+		animTimer += g_pTimer->GetElapsed();
+
+		if(animTimer >= 0.2){
+			if(animPhase != 1)
+				animPhase = 1;
+			animTimer = 0.0;
+			temp_animPhase = animPhase;
+		}
 	}
 	
 	// diagonal moving
 	// ------------------
 	//
-	if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_RIGHT))
-	{
+	if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_RIGHT)){
 		diagonal_moving = true;
 
 		// move player down and right
 		//
 		xPos += (100.0 * speed) * g_pTimer->GetElapsed();
 		yPos += (100.0 * speed) * g_pTimer->GetElapsed();
-
-		// animate
-		//
-	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_LEFT))
-	{
+	} else if(g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_LEFT)){
 		diagonal_moving = true;
 
 		// move player down and left
 		//
 		xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 		yPos += (100.0 * speed) * g_pTimer->GetElapsed();
-
-		// animate
-		//
-	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_RIGHT))
-	{
+	} else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_RIGHT)){
 		diagonal_moving = true;
 
 		// move player up and right
 		//
 		xPos += (100.0 * speed) * g_pTimer->GetElapsed();
 		yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
-
-		// animate
-		//
-	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_LEFT))
-	{
+	} else if(g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_LEFT)){
 		diagonal_moving = true;
 
 		// move player up and left
 		//
 		xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 		yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
-
-		// animate
-		//
-	    // animPhase += 20.0f * g_pTimer->GetElapsed();		// not finished !
-	}
-	else
+	} else
 		diagonal_moving = false;
 }
 
 void Player::Attacking()
 {
-	if(g_pFramework->KeyDown(SDLK_SPACE) && attack_processed == false)
-	{
+	if(g_pFramework->KeyDown(SDLK_SPACE) && attack_processed == false){
 		g_pCombat->PlayerAttack();
+
+		if(currentDirection == UP)
+			animPhase = 12;
+		else if(currentDirection == DOWN)
+			animPhase = 3;
+		else if(currentDirection == LEFT)
+			animPhase = 7;
+		else if(currentDirection == RIGHT)
+			animPhase = 11;
+
 		attack_processed = true;
 	}
 
-	if(g_pFramework->KeyDown(SDLK_SPACE) == false)
+	if(g_pFramework->KeyDown(SDLK_SPACE) == false){
+		animPhase = temp_animPhase;
 		attack_processed = false;
+	}
 }
 
 void Player::CheckPosition()

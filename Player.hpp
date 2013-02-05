@@ -107,6 +107,8 @@ class Player : public TSingleton<Player>
 		float				xPos;
 		float				yPos;
 		float				animPhase;
+		float				temp_animPhase;
+		float				animTimer;
 		float				currentHP;
         float				hp;
 		float				dmg;
@@ -120,7 +122,7 @@ class Player : public TSingleton<Player>
 		long				exp;
 		int					currentDirection;
 		bool				diagonal_moving;
-
+		
 		string				name;
 		CSprite				*SpritePlayer;
 

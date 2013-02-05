@@ -317,6 +317,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Data\player_sprite.bmp"
+				>
+			</File>
+			<File
 				RelativePath=".\Data\Test.bmp"
 				>
 			</File>
