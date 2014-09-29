@@ -2,8 +2,9 @@
 /RPG.ncb
 /RPG.sln
 /RPG.suo
-/RPG.vcproj.Adrian-Notebook.Adrian.user
-/RPG.vcproj.Adrian-PC.Adrian.user
 /log.html
 /SDL.dll
 CMakeLists.txt.user
+/nbproject/private
+/bin
+/lib

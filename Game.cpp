@@ -27,7 +27,7 @@ void Game::Init()
 	g_pPlayer->Reset();
 
 	SpriteBackground = new CSprite;
-	SpriteBackground->Load("Data/Background_Test.bmp");
+	SpriteBackground->Load("data/Background_Test.bmp");
 
 	spawnTimer = 0.0;
 	frameTimer = 0.0;

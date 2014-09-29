@@ -30,7 +30,7 @@ const long  Enemy::exp_earn				= 20000;
 void Enemy::Init()
 {
 	SpriteEnemy = new CSprite;
-	SpriteEnemy->Load("Data/Placeholder_Enemy.bmp", 1, enemy.width, enemy.height);    // not finished !
+	SpriteEnemy->Load("data/Placeholder_Enemy.bmp", 1, enemy.width, enemy.height);    // not finished !
 	SpriteEnemy->SetColorKey(255, 0, 255);
 }
 
