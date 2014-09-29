@@ -43,7 +43,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath>bin/rpg.exe</executablePath>
+          <executablePath></executablePath>
           <ccTool>
             <incDir>
               <pElem></pElem>
@@ -99,6 +99,11 @@
         <ccTool>
         </ccTool>
       </item>
+      <folder path="0">
+        <ccTool>
+          <standard>9</standard>
+        </ccTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="4">
         <ccTool>
         </ccTool>

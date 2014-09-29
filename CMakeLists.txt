@@ -10,10 +10,10 @@ Archer.cpp
 Archer.hpp
 Combat.cpp
 Combat.hpp
-Data/Background_Test.bmp
-Data/Placeholder_Enemy.bmp
-Data/Test.bmp
-Data/hero_sprite_test.bmp
+data/Background_Test.bmp
+data/Placeholder_Enemy.bmp
+data/Test.bmp
+data/hero_sprite_test.bmp
 Enemy.cpp
 Enemy.hpp
 Framework.cpp

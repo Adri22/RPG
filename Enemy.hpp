@@ -1,9 +1,3 @@
-/* 
- * File:   Enemy.h
- * Author: Adrian
- *
- * Created on 23. Dezember 2012, 18:30
- */
 
 #include <string>
 #include <list>
@@ -12,74 +6,70 @@
 #ifndef ENEMY_H
 #define	ENEMY_H
 
-class Enemy 
-{
-    public:
-        Enemy();
-        Enemy(const Enemy& orig);
-        virtual ~Enemy();
-        
-		void	Init();
-		void	Quit();
-		void	Reset();
-		void	Render();
-		void	Update();
+class Enemy {
+public:
+    Enemy();
+    Enemy(const Enemy& orig);
+    virtual ~Enemy();
 
-        float	getHP();
-        float	getCurrentHP();
+    void Init();
+    void Quit();
+    void Reset();
+    void Render();
+    void Update();
 
-		bool	getHit();
-		void	setHit(bool hit);
+    float getHP();
+    float getCurrentHP();
 
-		void	setCurrentHP(float newhp);
+    bool getHit();
+    void setHit(bool hit);
 
-		long	getEXP();
+    void setCurrentHP(float newhp);
 
-		void	kill();
-		bool	isAlive();
+    long getEXP();
 
-		struct				hitbox
-		{
-			int		width;
-			int		height;
-			int		left;
-			int		right;
-			int		top;
-			int		bottom;
-		}					enemy;
+    void kill();
+    bool isAlive();
 
-		struct				attackbox
-		{
-			float	atkXpos;
-			float	atkYpos;
-			int		width;
-			int		height;
-			int		left;
-			int		right;
-			int		top;
-			int		bottom;
-		}					enemy_atk_box;
+    struct hitbox {
+        int width;
+        int height;
+        int left;
+        int right;
+        int top;
+        int bottom;
+    } enemy;
 
-    private:
-		void				ProcessMoving();
-		void				CheckPosition();
-		void				KI();
-		void				AtkBoxPositioning();
-		void				updateHitbox();
+    struct attackbox {
+        float atkXpos;
+        float atkYpos;
+        int width;
+        int height;
+        int left;
+        int right;
+        int top;
+        int bottom;
+    } enemy_atk_box;
 
-		float				xPos;
-		float				yPos;
-		float				animPhase;
+private:
+    void ProcessMoving();
+    void CheckPosition();
+    void KI();
+    void AtkBoxPositioning();
+    void updateHitbox();
 
-		float				currentHP;
-		bool				isHit;
-		bool				alive;
+    float xPos;
+    float yPos;
+    float animPhase;
 
-		CSprite				*SpriteEnemy;
+    float currentHP;
+    bool isHit;
+    bool alive;
 
-		static const float	hp;
-		static const long	exp_earn;
+    CSprite *SpriteEnemy;
 
+    static const float hp;
+    static const long exp_earn;
 };
 
 #endif	/* ENEMY_H */
