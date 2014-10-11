@@ -1,2 +1,14 @@
 /Debug
 /lib
+/Debug
+/RPG.ncb
+/RPG.sln
+/RPG.suo
+/log.html
+/SDL.dll
+CMakeLists.txt.user
+/nbproject/private
+/bin
+/lib
+/*.o
+/*.gch
