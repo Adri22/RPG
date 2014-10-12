@@ -1,8 +1,8 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <SDL.h>
 #include "Log.hpp"
-#include "SDL.h"
 #include "Framework.hpp"
 #include "Game.hpp"
 

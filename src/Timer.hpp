@@ -1,7 +1,7 @@
 
 #include <cstdlib>
 #include <iostream>
-#include "SDL.h"
+#include <SDL.h>
 #include "Singleton.hpp"
 
 #ifndef TIMER_HPP
