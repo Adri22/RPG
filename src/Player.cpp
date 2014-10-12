@@ -4,24 +4,24 @@
 
 Player::Player() {
     SpritePlayer = NULL;
-	m_player.width = 30;
-	m_player.height = 30;
-	m_m_player_atk_box.atkXpos = 0;
-	m_m_player_atk_box.atkYpos = 0;
-	m_m_player_atk_box.width = 30;
-	m_m_player_atk_box.height = 15;
-    m_str = 5;
-	m_vita = 10;
-	m_dex = 5;
-	m_spirit = 10;
-	m_level = 1;
-	m_exp = 0;
-	m_hp = calcHP ( );
-	m_dmg = calcDMG ( );
-	m_speed = calcSpeed ( );
-	m_hpReg = calcHPreg ( );
-	m_currentHP = hp;
-	m_diagonal_moving = false;
+    player.width = 30;
+    player.height = 30;
+    player_atk_box.atkXpos = 0;
+    player_atk_box.atkYpos = 0;
+    player_atk_box.width = 30;
+    player_atk_box.height = 15;
+    str = 5;
+    vita = 10;
+    dex = 5;
+    spirit = 10;
+    level = 1;
+    exp = 0;
+    hp = calcHP();
+    dmg = calcDMG();
+    speed = calcSpeed();
+    hpReg = calcHPreg();
+    currentHP = hp;
+    diagonal_moving = false;
 }
 
 Player::Player(const Player& orig) {
@@ -41,7 +41,7 @@ const float Player::spirit_hpReg_factor = 0.3;
 
 void Player::Init() {
     SpritePlayer = new CSprite;
-	SpritePlayer->Load ( "data/player_sprite.bmp", 16, m_player.width, m_player.height ); // not finished !
+    SpritePlayer->Load("data/player_sprite.bmp", 16, player.width, player.height); // not finished !
     SpritePlayer->SetColorKey(255, 0, 255);
 }
 
@@ -54,22 +54,22 @@ void Player::Quit() {
 
 void Player::Reset() {
     // startposition
-	m_xPos = 376.0;
-	m_yPos = 520.0;
+    xPos = 376.0;
+    yPos = 520.0;
 
-	m_animPhase = 0.0;
-	m_temp_animPhase = 0.0;
-	m_animTimer = 0.0;
+    animPhase = 0.0;
+    temp_animPhase = 0.0;
+    animTimer = 0.0;
 
-	m_currentDirection = UP;
+    currentDirection = UP;
 
-	m_attack_processed = false;
+    attack_processed = false;
 }
 
 void Player::Render() {
     // set playerposition and render sprite
-	SpritePlayer->SetPos ( m_xPos, m_yPos );
-	SpritePlayer->Render ( m_animPhase );
+    SpritePlayer->SetPos(xPos, yPos);
+    SpritePlayer->Render(animPhase);
 }
 
 void Player::Update() {
@@ -81,47 +81,47 @@ void Player::Update() {
 }
 
 void Player::updateHitbox() {
-	m_player.left = m_xPos;
-	m_player.right = m_xPos + m_player.width;
-	m_player.top = m_yPos;
-	m_player.bottom = m_yPos + m_player.height;
+    player.left = xPos;
+    player.right = xPos + player.width;
+    player.top = yPos;
+    player.bottom = yPos + player.height;
 }
 
 void Player::AtkBoxPositioning() {
-    int l_direction = getDirection();
+    int direction = getDirection();
 
-    switch (l_direction) {
+    switch (direction) {
         case UP:
-            m_player_atk_box.atkXpos = m_xPos;
-			m_player_atk_box.atkYpos = m_yPos - m_player_atk_box.height;
-            m_player_atk_box.top = m_player_atk_box.atkYpos;
-            m_player_atk_box.bottom = (m_player_atk_box.atkYpos + m_player_atk_box.height);
-            m_player_atk_box.right = (m_player_atk_box.atkXpos + m_player_atk_box.width);
-            m_player_atk_box.left = m_player_atk_box.atkXpos;
+            player_atk_box.atkXpos = xPos;
+            player_atk_box.atkYpos = yPos - player_atk_box.height;
+            player_atk_box.top = player_atk_box.atkYpos;
+            player_atk_box.bottom = (player_atk_box.atkYpos + player_atk_box.height);
+            player_atk_box.right = (player_atk_box.atkXpos + player_atk_box.width);
+            player_atk_box.left = player_atk_box.atkXpos;
             break;
         case DOWN:
-			m_player_atk_box.atkXpos = m_xPos;
-			m_player_atk_box.atkYpos = m_yPos + m_player.height;
-            m_player_atk_box.top = m_player_atk_box.atkYpos;
-            m_player_atk_box.bottom = (m_player_atk_box.atkYpos + m_player_atk_box.height);
-            m_player_atk_box.right = (m_player_atk_box.atkXpos + m_player_atk_box.width);
-            m_player_atk_box.left = m_player_atk_box.atkXpos;
+            player_atk_box.atkXpos = xPos;
+            player_atk_box.atkYpos = yPos + player.height;
+            player_atk_box.top = player_atk_box.atkYpos;
+            player_atk_box.bottom = (player_atk_box.atkYpos + player_atk_box.height);
+            player_atk_box.right = (player_atk_box.atkXpos + player_atk_box.width);
+            player_atk_box.left = player_atk_box.atkXpos;
             break;
         case LEFT:
-			m_player_atk_box.atkXpos = m_xPos - m_player_atk_box.height;
-			m_player_atk_box.atkYpos = m_yPos;
-            m_player_atk_box.top = m_player_atk_box.atkYpos;
-            m_player_atk_box.bottom = (m_player_atk_box.atkYpos + m_player_atk_box.width);
-            m_player_atk_box.right = (m_player_atk_box.atkXpos + m_player_atk_box.height);
-            m_player_atk_box.left = m_player_atk_box.atkXpos;
+            player_atk_box.atkXpos = xPos - player_atk_box.height;
+            player_atk_box.atkYpos = yPos;
+            player_atk_box.top = player_atk_box.atkYpos;
+            player_atk_box.bottom = (player_atk_box.atkYpos + player_atk_box.width);
+            player_atk_box.right = (player_atk_box.atkXpos + player_atk_box.height);
+            player_atk_box.left = player_atk_box.atkXpos;
             break;
         case RIGHT:
-			m_player_atk_box.atkXpos = m_xPos + m_player.width;
-			m_player_atk_box.atkYpos = m_yPos;
-            m_player_atk_box.top = m_player_atk_box.atkYpos;
-            m_player_atk_box.bottom = (m_player_atk_box.atkYpos + m_player_atk_box.width);
-            m_player_atk_box.right = (m_player_atk_box.atkXpos + m_player_atk_box.height);
-            m_player_atk_box.left = m_player_atk_box.atkXpos;
+            player_atk_box.atkXpos = xPos + player.width;
+            player_atk_box.atkYpos = yPos;
+            player_atk_box.top = player_atk_box.atkYpos;
+            player_atk_box.bottom = (player_atk_box.atkYpos + player_atk_box.width);
+            player_atk_box.right = (player_atk_box.atkXpos + player_atk_box.height);
+            player_atk_box.left = player_atk_box.atkXpos;
             break;
         default: break;
     }
@@ -131,89 +131,89 @@ void Player::ProcessMoving() {
     // horizontal and vertical moving
     // -----------------------------------
     //
-	if ( g_pFramework->KeyDown ( SDLK_LEFT ) ) {
-		m_currentDirection = LEFT;
+    if (g_pFramework->KeyDown(SDLK_LEFT)) {
+        currentDirection = LEFT;
 
         // move player leftwards
         //
-		if ( !m_diagonal_moving )
-			m_xPos -= ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        if (!diagonal_moving)
+            xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 
         // animate
         //
-		m_animTimer += g_pTimer->GetElapsed ( );
+        animTimer += g_pTimer->GetElapsed();
 
-        if (m_animTimer >= 0.2) {
-			if ( m_animPhase != 4 && m_animPhase != 5 )
-				m_animPhase = 4;
-			else if ( m_animPhase == 4 )
-				m_animPhase = 5;
-			else if ( m_animPhase == 5 )
-				m_animPhase = 4;
-			m_animTimer = 0.0;
-			m_temp_animPhase = m_animPhase;
+        if (animTimer >= 0.2) {
+            if (animPhase != 4 && animPhase != 5)
+                animPhase = 4;
+            else if (animPhase == 4)
+                animPhase = 5;
+            else if (animPhase == 5)
+                animPhase = 4;
+            animTimer = 0.0;
+            temp_animPhase = animPhase;
         }
     } else if (g_pFramework->KeyDown(SDLK_RIGHT)) {
-		m_currentDirection = RIGHT;
+        currentDirection = RIGHT;
 
         // move player rightwards
         //
-		if ( !m_diagonal_moving )
-			m_xPos += ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        if (!diagonal_moving)
+            xPos += (100.0 * speed) * g_pTimer->GetElapsed();
 
         // animate
         //
-		m_animTimer += g_pTimer->GetElapsed ( );
+        animTimer += g_pTimer->GetElapsed();
 
-		if ( m_animTimer >= 0.2 ) {
-			if ( m_animPhase != 8 && m_animPhase != 9 )
-				m_animPhase = 8;
-			else if ( m_animPhase == 8 )
-				m_animPhase = 9;
-			else if ( m_animPhase == 9 )
-				m_animPhase = 8;
-            m_animTimer = 0.0;
-			m_temp_animPhase = m_animPhase;
+        if (animTimer >= 0.2) {
+            if (animPhase != 8 && animPhase != 9)
+                animPhase = 8;
+            else if (animPhase == 8)
+                animPhase = 9;
+            else if (animPhase == 9)
+                animPhase = 8;
+            animTimer = 0.0;
+            temp_animPhase = animPhase;
         }
     } else if (g_pFramework->KeyDown(SDLK_UP)) {
-        m_currentDirection = UP;
+        currentDirection = UP;
 
         // move player up
         //
-        if (!m_diagonal_moving)
-			m_yPos -= ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        if (!diagonal_moving)
+            yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
 
         // animate
         //
-		m_animTimer += g_pTimer->GetElapsed ( );
+        animTimer += g_pTimer->GetElapsed();
 
-		if ( m_animTimer >= 0.2 ) {
-			if ( m_animPhase != 13 && m_animPhase != 14 )
-				m_animPhase = 13;
-			else if ( m_animPhase == 13 )
-				m_animPhase = 14;
-			else if ( m_animPhase == 14 )
-				m_animPhase = 13;
-			m_animTimer = 0.0;
-			m_temp_animPhase = m_animPhase;
+        if (animTimer >= 0.2) {
+            if (animPhase != 13 && animPhase != 14)
+                animPhase = 13;
+            else if (animPhase == 13)
+                animPhase = 14;
+            else if (animPhase == 14)
+                animPhase = 13;
+            animTimer = 0.0;
+            temp_animPhase = animPhase;
         }
     } else if (g_pFramework->KeyDown(SDLK_DOWN)) {
-        m_currentDirection = DOWN;
+        currentDirection = DOWN;
 
         // move player down
         //
-        if (!m_diagonal_moving)
-            m_yPos += (100.0 * m_speed) * g_pTimer->GetElapsed();
+        if (!diagonal_moving)
+            yPos += (100.0 * speed) * g_pTimer->GetElapsed();
 
         // animate
         //
-        m_animTimer += g_pTimer->GetElapsed();
+        animTimer += g_pTimer->GetElapsed();
 
-		if ( m_animTimer >= 0.2 ) {
-            if (m_animPhase != 1)
-				m_animPhase = 1;
-			m_animTimer = 0.0;
-			m_temp_animPhase = m_animPhase;
+        if (animTimer >= 0.2) {
+            if (animPhase != 1)
+                animPhase = 1;
+            animTimer = 0.0;
+            temp_animPhase = animPhase;
         }
     }
 
@@ -221,70 +221,70 @@ void Player::ProcessMoving() {
     // ------------------
     //
     if (g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_RIGHT)) {
-        m_diagonal_moving = true;
+        diagonal_moving = true;
 
         // move player down and right
         //
-		m_xPos += ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
-		m_yPos += ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        xPos += (100.0 * speed) * g_pTimer->GetElapsed();
+        yPos += (100.0 * speed) * g_pTimer->GetElapsed();
     } else if (g_pFramework->KeyDown(SDLK_DOWN) && g_pFramework->KeyDown(SDLK_LEFT)) {
-		m_diagonal_moving = true;
+        diagonal_moving = true;
 
         // move player down and left
         //
-		m_xPos -= ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
-		m_yPos += ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
+        yPos += (100.0 * speed) * g_pTimer->GetElapsed();
     } else if (g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_RIGHT)) {
-		m_diagonal_moving = true;
+        diagonal_moving = true;
 
         // move player up and right
         //
-		m_xPos += ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
-		m_yPos -= ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        xPos += (100.0 * speed) * g_pTimer->GetElapsed();
+        yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
     } else if (g_pFramework->KeyDown(SDLK_UP) && g_pFramework->KeyDown(SDLK_LEFT)) {
-		m_diagonal_moving = true;
+        diagonal_moving = true;
 
         // move player up and left
         //
-		m_xPos -= ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
-		m_yPos -= ( 100.0 * m_speed ) * g_pTimer->GetElapsed ( );
+        xPos -= (100.0 * speed) * g_pTimer->GetElapsed();
+        yPos -= (100.0 * speed) * g_pTimer->GetElapsed();
     } else
-		m_diagonal_moving = false;
+        diagonal_moving = false;
 }
 
 void Player::Attacking() {
-	if ( g_pFramework->KeyDown ( SDLK_SPACE ) && m_attack_processed == false ) {
+    if (g_pFramework->KeyDown(SDLK_SPACE) && attack_processed == false) {
         g_pCombat->PlayerAttack();
 
-		if ( m_currentDirection == UP )
-			m_animPhase = 12;
-		else if ( m_currentDirection == DOWN )
-			m_animPhase = 3;
-		else if ( m_currentDirection == LEFT )
-			m_animPhase = 7;
-		else if ( m_currentDirection == RIGHT )
-			m_animPhase = 11;
+        if (currentDirection == UP)
+            animPhase = 12;
+        else if (currentDirection == DOWN)
+            animPhase = 3;
+        else if (currentDirection == LEFT)
+            animPhase = 7;
+        else if (currentDirection == RIGHT)
+            animPhase = 11;
 
-		m_attack_processed = true;
+        attack_processed = true;
     }
 
     if (g_pFramework->KeyDown(SDLK_SPACE) == false) {
-		m_animPhase = m_temp_animPhase;
-		m_attack_processed = false;
+        animPhase = temp_animPhase;
+        attack_processed = false;
     }
 }
 
 void Player::CheckPosition() {
     // not finished !
     //
-	if ( m_xPos < 0.0 )
-		m_xPos = 0.0;
-	else if ( m_xPos > 770.0 )
-		m_xPos = 770.0;
-	else if ( m_yPos < 0.0 )
-		m_yPos = 0.0;
+    if (xPos < 0.0)
+        xPos = 0.0;
+    else if (xPos > 770.0)
+        xPos = 770.0;
+    else if (yPos < 0.0)
+        yPos = 0.0;
     else if (yPos > 570.0)
-		m_yPos = 570.0;
+        yPos = 570.0;
 
     /*		// not finished !
                     //
@@ -296,133 +296,133 @@ void Player::CheckPosition() {
 }
 
 string Player::getName() {
-	return m_name;
+    return name;
 }
 
 float Player::getHP() {
-	return m_hp;
+    return hp;
 }
 
 float Player::getDMG() {
-	return m_dmg;
+    return dmg;
 }
 
 float Player::getSpeed() {
-	return m_speed;
+    return speed;
 }
 
 float Player::getHPreg() {
-	return m_hpReg;
+    return hpReg;
 }
 
 int Player::getStr() {
-	return m_str;
+    return str;
 }
 
 int Player::getVita() {
-	return m_vita;
+    return vita;
 }
 
 int Player::getDex() {
-	return m_dex;
+    return dex;
 }
 
 int Player::getSpirit() {
-	return m_spirit;
+    return spirit;
 }
 
 int Player::getLevel() {
-	return m_level;
+    return level;
 }
 
 float Player::getCurrentHP() {
-	return m_currentHP;
+    return currentHP;
 }
 
 int Player::getDirection() {
-	return m_currentDirection;
+    return currentDirection;
 }
 
-void Player::setName(string p_name) {
-	m_name = p_name;
+void Player::setName(string name) {
+    this->name = name;
 }
 
-void Player::setHP(float p_hp) {
-	m_hp = p_hp;
+void Player::setHP(float hp) {
+    this->hp = hp;
 }
 
-void Player::setDMG(float p_dmg) {
-	m_dmg = p_dmg;
+void Player::setDMG(float dmg) {
+    this->dmg = dmg;
 }
 
-void Player::setSpeed ( float p_speed ) {
-	m_speed = p_speed;
+void Player::setSpeed(float speed) {
+    this->speed = speed;
 }
 
-void Player::setHPreg ( float p_hpReg ) {
-	m_hpReg = p_hpReg;
+void Player::setHPreg(float hpReg) {
+    this->hpReg = hpReg;
 }
 
-void Player::setStr ( int p_str ) {
-	m_str = p_str;
+void Player::setStr(int str) {
+    this->str = str;
 }
 
-void Player::setVita ( int p_vita ) {
-	m_vita = p_vita;
+void Player::setVita(int vita) {
+    this->vita = vita;
 }
 
-void Player::setDex ( int p_dex ) {
-	m_dex = p_dex;
+void Player::setDex(int dex) {
+    this->dex = dex;
 }
 
-void Player::setSpirit ( int p_spirit ) {
-	m_spirit = p_spirit;
+void Player::setSpirit(int spirit) {
+    this->spirit = spirit;
 }
 
-void Player::setLevel ( int p_level ) {
-	m_level = p_level;
+void Player::setLevel(int level) {
+    this->level = level;
 }
 
-void Player::setCurrentHP ( float p_newhp ) {
-	m_newhp = p_newhp;
+void Player::setCurrentHP(float newhp) {
+    newhp = currentHP;
 }
 
 float Player::calcHP() {
-    m_hp = vita_hp_factor * m_vita;
-	return m_hp;
+    hp = vita_hp_factor * vita;
+    return hp;
 }
 
 float Player::calcDMG() {
-	m_dmg = ( str_dmg_factor * m_str ) + ( dex_dmg_factor * m_dex );
-	return m_dmg;
+    dmg = (str_dmg_factor * str) + (dex_dmg_factor * dex);
+    return dmg;
 }
 
 float Player::calcSpeed() {
-    const int l_dex_points = 10;
-	m_speed = dex_speed_factor * ( m_dex / l_dex_points );
+    const int dex_points = 10;
+    speed = dex_speed_factor * (dex / dex_points);
 
-	if ( m_speed < 1 )
-		m_speed = 1;
+    if (speed < 1)
+        speed = 1;
 
-	return m_speed;
+    return speed;
 }
 
 float Player::calcHPreg() {
-    const int l_spirit_points = 10;
-	m_hpReg = spirit_hpReg_factor * ( m_spirit / l_spirit_points );
-	return m_hpReg;
+    const int spirit_points = 10;
+    hpReg = spirit_hpReg_factor * (spirit / spirit_points);
+    return hpReg;
 }
 
 void Player::setEXP(long exp_gained) {
-	m_exp += exp_gained;
+    exp = exp + exp_gained;
     bool level_up = false;
 
     do {
         int current_level = getLevel();
         long exp_needed = exp_base + ((current_level - 1) * exp_step);
 
-		if ( current_level < maxLevel && m_exp >= exp_needed ) {
-			m_exp -= exp_needed;
+        if (current_level < maxLevel && exp >= exp_needed) {
+            exp = exp - exp_needed;
             levelUp();
             level_up = true;
         } else
@@ -432,7 +432,7 @@ void Player::setEXP(long exp_gained) {
 }
 
 void Player::levelUp() {
-    std::cout << "Level Up!" << endl;
+    cout << "Level Up!" << endl;
 
     // increase level
     //
@@ -440,7 +440,7 @@ void Player::levelUp() {
     currentLevel++;
     setLevel(currentLevel);
 
-    std::cout << "You have reached level " << currentLevel << "!" << std::endl;
+    cout << "You have reached level " << currentLevel << "!" << endl;
 
     //	increase vita by 1 and calc new hp-value
     //	everytime, the player levels up, vita gets increased
@@ -501,16 +501,16 @@ void Player::chooseStatPoint() {
 
 void Player::displayStats() {
     cout << "---------------------" << endl;
-	cout << "Name:   " << m_name << endl;
-	cout << "HP:     " << m_hp << endl;
-	cout << "DMG:    " << m_dmg << endl;
-	cout << "Speed:  " << m_speed << endl;
-	cout << "HP-Reg: " << m_hpReg << endl;
-	cout << "Str:    " << m_str << endl;
-	cout << "Vita:   " << m_vita << endl;
-	cout << "Dex:    " << m_dex << endl;
-	cout << "Spirit: " << m_spirit << endl;
-	cout << "Level:  " << m_level << endl;
-	cout << "EXP:    " << m_exp << endl;
+    cout << "Name:   " << name << endl;
+    cout << "HP:     " << hp << endl;
+    cout << "DMG:    " << dmg << endl;
+    cout << "Speed:  " << speed << endl;
+    cout << "HP-Reg: " << hpReg << endl;
+    cout << "Str:    " << str << endl;
+    cout << "Vita:   " << vita << endl;
+    cout << "Dex:    " << dex << endl;
+    cout << "Spirit: " << spirit << endl;
+    cout << "Level:  " << level << endl;
+    cout << "EXP:    " << exp << endl;
     cout << "---------------------" << endl;
 }
