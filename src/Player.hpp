@@ -8,8 +8,6 @@
 #ifndef PLAYER_H
 #define	PLAYER_H
 
-using namespace std;
-
 #define g_pPlayer Player::Get()
 
 enum DIRECTIONS {
@@ -31,7 +29,7 @@ public:
     void Render();
     void Update();
 
-    string getName();
+    std::string getName();
     float getHP();
     float getDMG();
     float getSpeed();
@@ -44,19 +42,19 @@ public:
     float getCurrentHP();
     int getDirection();
 
-    void setName(string name);
-    void setHP(float hp);
-    void setDMG(float dmg);
-    void setSpeed(float speed);
-    void setHPreg(float hpReg);
-    void setStr(int str);
-    void setVita(int vita);
-    void setDex(int dex);
-    void setSpirit(int spirit);
-    void setLevel(int level);
-    void setCurrentHP(float newhp);
+    void setName(std::string p_name);
+    void setHP(float p_hp);
+    void setDMG(float p_dmg);
+	void setSpeed ( float p_speed );
+	void setHPreg ( float p_hpReg );
+	void setStr ( int p_str );
+	void setVita ( int p_vita );
+	void setDex ( int p_dex );
+	void setSpirit ( int p_spirit );
+	void setLevel ( int p_level );
+	void setCurrentHP ( float p_newhp );
 
-    void setEXP(long exp_gained);
+	void setEXP ( long p_exp_gained );
     void levelUp();
     void chooseStatPoint();
     void displayStats();
@@ -68,7 +66,7 @@ public:
         int right;
         int top;
         int bottom;
-    } player;
+	} m_player;
 
     struct attackbox {
         float atkXpos;
@@ -79,7 +77,7 @@ public:
         int right;
         int top;
         int bottom;
-    } player_atk_box;
+	} m_player_atk_box;
 
 private:
     void ProcessMoving();
@@ -93,31 +91,31 @@ private:
     float calcSpeed();
     float calcHPreg();
 
-    bool attack_processed;
-    float xPos;
-    float yPos;
-    float animPhase;
-    float temp_animPhase;
-    float animTimer;
-    float currentHP;
-    float hp;
-    float dmg;
-    float speed;
-    float hpReg;
-    int str;
-    int vita;
-    int dex;
-    int spirit;
-    int level;
-    long exp;
-    int currentDirection;
-    bool diagonal_moving;
+    bool m_attack_processed;
+	float m_xPos;
+	float m_yPos;
+	float m_animPhase;
+	float m_temp_animPhase;
+	float m_animTimer;
+	float m_currentHP;
+	float m_hp;
+	float m_dmg;
+	float m_speed;
+	float m_hpReg;
+	int m_str;
+	int m_vita;
+	int m_dex;
+	int m_spirit;
+	int m_level;
+	long m_exp;
+	int m_currentDirection;
+	bool m_diagonal_moving;
 
-    string name;
+	std::string m_name;
     CSprite *SpritePlayer;
 
-    static const int maxLevel;
-    static const long exp_base;
+	static const int maxLevel;
+	static const long exp_base;
     static const long exp_step;
     static const float vita_hp_factor;
     static const float str_dmg_factor;
