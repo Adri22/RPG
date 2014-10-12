@@ -1,4 +1,3 @@
-
 #include <string>
 #include <list>
 #include "Sprite.hpp"
@@ -8,68 +7,68 @@
 
 class Enemy {
 public:
-    Enemy();
-    Enemy(const Enemy& orig);
-    virtual ~Enemy();
+	Enemy();
+	Enemy(const Enemy& orig);
+	virtual ~Enemy();
 
-    void Init();
-    void Quit();
-    void Reset();
-    void Render();
-    void Update();
+	void Init();
+	void Quit();
+	void Reset();
+	void Render();
+	void Update();
 
-    float getHP();
-    float getCurrentHP();
+	float getHP();
+	float getCurrentHP();
 
-    bool getHit();
-    void setHit(bool hit);
+	bool getHit();
+	void setHit(bool hit);
 
-    void setCurrentHP(float newhp);
+	void setCurrentHP(float newhp);
 
-    long getEXP();
+	long getEXP();
 
-    void kill();
-    bool isAlive();
+	void kill();
+	bool isAlive();
 
-    struct hitbox {
-        int width;
-        int height;
-        int left;
-        int right;
-        int top;
-        int bottom;
-    } enemy;
+	struct hitbox {
+		int width;
+		int height;
+		int left;
+		int right;
+		int top;
+		int bottom;
+	} enemy;
 
-    struct attackbox {
-        float atkXpos;
-        float atkYpos;
-        int width;
-        int height;
-        int left;
-        int right;
-        int top;
-        int bottom;
-    } enemy_atk_box;
+	struct attackbox {
+		float atkXpos;
+		float atkYpos;
+		int width;
+		int height;
+		int left;
+		int right;
+		int top;
+		int bottom;
+	} enemy_atk_box;
 
 private:
-    void ProcessMoving();
-    void CheckPosition();
-    void KI();
-    void AtkBoxPositioning();
-    void updateHitbox();
+	void ProcessMoving();
+	void CheckPosition();
+	void KI();
+	void AtkBoxPositioning();
+	void updateHitbox();
 
-    float xPos;
-    float yPos;
-    float animPhase;
+	float xPos;
+	float yPos;
+	float animPhase;
 
-    float currentHP;
-    bool isHit;
-    bool alive;
+	float currentHP;
+	bool isHit;
+	bool alive;
 
-    CSprite *SpriteEnemy;
+	CSprite *SpriteEnemy;
 
-    static const float hp;
-    static const long exp_earn;
+	static const float hp;
+	static const long exp_earn;
 };
 
 #endif	/* ENEMY_H */

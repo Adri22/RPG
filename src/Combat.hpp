@@ -1,4 +1,3 @@
-
 #ifndef COMBAT_HPP
 #define COMBAT_HPP
 
@@ -14,23 +13,22 @@ using namespace std;
 #define g_pCombat Combat::Get()
 
 enum WHOISATTACKING {
-    PLAYER,
-    ENEMY
+	PLAYER, ENEMY
 };
 
-class Combat : public TSingleton<Combat> {
+class Combat: public TSingleton<Combat> {
 public:
-    Combat();
-    virtual ~Combat();
+	Combat();
+	virtual ~Combat();
 
-    void PlayerAttack();
-    void EnemyAttack();
+	void PlayerAttack();
+	void EnemyAttack();
 
 private:
-    void CheckCollisions(int whoisattacking);
+	void CheckCollisions(int whoisattacking);
 
-    bool collision;
-    list<Enemy*> eList;
+	bool collision;
+	list<Enemy*> eList;
 };
 
 #endif
